@@ -223,7 +223,7 @@
     }
     .btn-exit-app:hover { background: #e11d48; }
 
-    /* BARRA DE NAVEGACIÓN INFERIOR COMPLETA (SIN EL BOTÓN DL 1412) */
+    /* BARRA DE NAVEGACIÓN INFERIOR COMPLETA */
     .header-bottom-menu {
       background: var(--mag-darkest);
       display: flex;
@@ -577,7 +577,7 @@
       color: #14532d;
     }
 
-    /* BURBUJA FLOTANTE INFERIOR IZQUIERDA */
+    /* BURBUJAS FLOTANTES INFERIORES DE NOTIFICACIÓN */
     #academic-left-notice {
       position: fixed;
       bottom: 22px;
@@ -595,12 +595,29 @@
       animation: floatLeftPrompt 4s ease-in-out infinite;
     }
 
+    #citizen-digital-notice {
+      position: fixed;
+      bottom: 85px;
+      left: 22px;
+      z-index: 3000;
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      border-radius: 14px;
+      padding: 10px 14px;
+      max-width: 300px;
+      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.25);
+      font-size: 11px;
+      line-height: 1.4;
+      color: #14532d;
+      animation: floatLeftPrompt 4.5s ease-in-out infinite 0.5s;
+    }
+
     @keyframes floatLeftPrompt {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-4px); }
     }
 
-    #academic-left-notice .close-btn {
+    .close-notice-btn {
       position: absolute;
       top: 6px;
       right: 8px;
@@ -612,7 +629,7 @@
       cursor: pointer;
     }
 
-    /* CHATBOT IURISNIANO CON ANIMACIÓN Y TRES PUNTOS PREDETERMINADO PARA LEYES */
+    /* CHATBOT IURISNIANO: ANIMACIONES DINÁMICAS Y AMIGABLES */
     #chatbot-wrapper {
       position: fixed;
       bottom: 22px;
@@ -643,21 +660,48 @@
       50% { transform: translateY(-6px); }
     }
 
+    /* Efecto Glow Pulse para Iurisniano */
     #chatbot-bubble {
-      background: linear-gradient(135deg, #750e2e, #be185d);
+      background: linear-gradient(135deg, #750e2e, #be185d, #e11d48);
+      background-size: 200% 200%;
       color: white;
-      width: 62px;
-      height: 62px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(190, 24, 93, 0.45);
+      box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.6), 0 8px 24px rgba(190, 24, 93, 0.45);
       cursor: pointer;
       transition: all 0.3s;
       border: 2px solid #fbcfe8;
+      animation: pulseGlow 2s infinite, gradientBg 4s ease infinite;
     }
-    #chatbot-bubble:hover { transform: scale(1.1) rotate(5deg); }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.6), 0 8px 24px rgba(190, 24, 93, 0.45); }
+      70% { box-shadow: 0 0 0 14px rgba(190, 24, 93, 0), 0 8px 24px rgba(190, 24, 93, 0.45); }
+      100% { box-shadow: 0 0 0 0 rgba(190, 24, 93, 0), 0 8px 24px rgba(190, 24, 93, 0.45); }
+    }
+
+    @keyframes gradientBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #chatbot-bubble:hover {
+      transform: scale(1.12) rotate(6deg);
+    }
+
+    .chatbot-avatar-svg {
+      animation: botIdle 3s ease-in-out infinite;
+    }
+
+    @keyframes botIdle {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-3px) rotate(-3deg); }
+    }
     
     #chatbot-dialog {
       position: fixed;
@@ -674,9 +718,15 @@
       flex-direction: column;
       z-index: 3000;
       overflow: hidden;
+      animation: popupChat 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* Animación de tres puntos pulsantes para el bot */
+    @keyframes popupChat {
+      from { transform: scale(0.85) translateY(20px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* Animación de tres puntos pulsantes */
     .typing-indicator {
       display: inline-flex;
       align-items: center;
@@ -697,7 +747,7 @@
       40% { transform: scale(1.2); opacity: 1; }
     }
 
-    /* FOOTER ACADÉMICO CON ÍCONOS FIELES DE REDES SOCIALES */
+    /* FOOTER ACADÉMICO CON ÍCONOS DE REDES SOCIALES */
     .academic-footer {
       background: #18020e;
       color: #fbcfe8;
@@ -733,12 +783,19 @@
 
   <!-- BURBUJA DE ADVERTENCIA ACADÉMICA INFERIOR IZQUIERDA -->
   <div id="academic-left-notice">
-    <button class="close-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
+    <button class="close-notice-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
     <div style="font-weight: 800; color: #750e2e; margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
     <div>Prototipo simulado universitario (D. Leg. N° 1412, Ley N° 27444 / Ley N° 29733 de Datos Personales).</div>
   </div>
 
-  <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS (100% GARANTIZADO) -->
+  <!-- BURBUJA FLOTANTE DE CIUDADANO DIGITAL (SEPARADA DE LA PORTADA) -->
+  <div id="citizen-digital-notice">
+    <button class="close-notice-btn" onclick="document.getElementById('citizen-digital-notice').style.display='none'" style="color: #15803d;">✕</button>
+    <div style="font-weight: 800; color: #15803d; margin-bottom: 2px;">🌱 ¡Conviértete en un Ciudadano Digital!</div>
+    <div>Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.</div>
+  </div>
+
+  <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS -->
   <div id="full-page-splash">
     <div class="splash-content-wrapper">
       <svg class="splash-themis-svg" viewBox="0 0 200 320" fill="none">
@@ -800,7 +857,6 @@
       </div>
 
       <div class="header-right-widgets">
-        <!-- SE INCLUYÓ EL IDIOMA AYMARA DE PERÚ (AY) -->
         <div class="lang-switcher-box">
           <button id="btn-lang-es" onclick="switchLanguage('es')" class="lang-btn active">ES</button>
           <button id="btn-lang-en" onclick="switchLanguage('en')" class="lang-btn">EN</button>
@@ -822,7 +878,7 @@
       </div>
     </div>
 
-    <!-- Menú de Navegación (Removido el botón DL 1412) -->
+    <!-- Menú de Navegación -->
     <nav class="header-bottom-menu">
       <button onclick="exitToHome()" class="menu-nav-btn" id="nav-item-home">Inicio</button>
       <button onclick="openInfoView('mision')" class="menu-nav-btn" id="nav-item-mision">Misión</button>
@@ -863,11 +919,6 @@
         </div>
 
         <div style="padding: 22px; text-align: left;">
-          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 11px; line-height: 1.6; color: #166534;">
-            <strong id="p0-cit-title" style="font-size: 12px; display: block; margin-bottom: 4px; color: #15803d;">🌱 ¡Conviértete en un Ciudadano Digital!</strong>
-            <span id="p0-cit-desc">Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.</span>
-          </div>
-
           <div style="background: #fdf2f8; border: 1px solid var(--mag-border); border-radius: 12px; padding: 14px; margin-bottom: 14px; font-size: 12px; line-height: 1.7;">
             <div><span style="color: var(--text-muted);" id="p0-lbl-author">Estudiante:</span> <strong style="color: var(--mag-primary); font-size: 13px;">Sonia Pilar Condori Ruelas</strong></div>
             <div><span style="color: var(--text-muted);" id="p0-lbl-course">Curso:</span> <strong style="color: var(--mag-dark);">Gobierno Digital e Informático</strong></div>
@@ -921,10 +972,10 @@
           </svg>
           <h2 id="p2-temis-title" style="font-size: 19px; color: #3f0314; font-weight: 800;">Portal Electrónico Judicial - CSJ Puno</h2>
           <p id="p2-temis-desc" style="font-size: 13px; color: #64748b; max-width: 500px; margin: 8px auto 16px;">
-            Haga clic en este recuadro para validar el código CAPTCHA de seguridad e iniciar la consulta de causas.
+            Seleccione aquí para validar la seguridad e iniciar la consulta de causas.
           </p>
           <span id="p2-temis-badge" style="font-size: 11px; background: #be185d; color: white; padding: 7px 16px; border-radius: 20px; font-weight: bold; display: inline-block;">
-            Clic aquí para desbloquear búsqueda
+            Iniciar Búsqueda
           </span>
         </div>
 
@@ -943,19 +994,19 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 12px;">
               <div>
                 <label style="font-size: 11px; font-weight: bold; color: #64748b;">Correlativo</label>
-                <input type="text" id="input-exp-corr" value="00174" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;">
+                <input type="text" id="input-exp-corr" value="00174" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
                 <label style="font-size: 11px; font-weight: bold; color: #64748b;">Año</label>
-                <input type="text" value="2019" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;">
+                <input type="text" value="2019" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
                 <label style="font-size: 11px; font-weight: bold; color: #64748b;">Cuaderno</label>
-                <input type="text" value="0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;">
+                <input type="text" value="0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
                 <label style="font-size: 11px; font-weight: bold; color: #64748b;">Distrito Jud.</label>
-                <input type="text" value="2111" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;">
+                <input type="text" value="2111" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
             </div>
           </div>
@@ -973,7 +1024,7 @@
             </div>
             <div>
               <label style="font-weight: bold; color: #64748b;">Demandante o Demandado:</label>
-              <input type="text" id="input-party-name" value="An*** Le*** Su*** Qu***" style="width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold;">
+              <input type="text" id="input-party-name" value="An*** Le*** Su*** Qu***" style="width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
             </div>
           </div>
 
@@ -1026,7 +1077,7 @@
           </div>
         </div>
 
-        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO (ACORDEÓN CON CENSURA PDF COMPLETA) -->
+        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-2')">
             <h3 id="sec-ii-title">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA (MCCLO)</h3>
@@ -1048,7 +1099,7 @@
           </div>
         </div>
 
-        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD ABIERTA -->
+        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-3')">
             <h3 id="sec-iii-title">III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412 / LEY 27444)</h3>
@@ -1066,11 +1117,11 @@
               <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Apoderado Judicial: Abog. He*** Ro*** Ló*** Al*** (DNI 0120****) | Casilla: 59629</div>
             </div>
 
-            <!-- BÚSQUEDA ABIERTA -->
+            <!-- BÚSQUEDA ABIERTA CON ENTER -->
             <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
               <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Módulo de Consulta Interoperable ABIERTO (PISDP - D. Leg. 1412)</strong>
               <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos de cualquier persona..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;">
+                <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos de cualquier persona..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;" onkeypress="if(event.key==='Enter') triggerDynamicInterop('RENIEC')">
               </div>
               
               <div class="interop-group-right">
@@ -1096,7 +1147,7 @@
           </div>
         </div>
 
-        <!-- IV. SEGUIMIENTO CORRELATIVO CON CENSURA TOTAL (ACORDEÓN - PUNTO 4) -->
+        <!-- IV. SEGUIMIENTO CORRELATIVO CON CENSURA TOTAL -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-4')">
             <h3 id="sec-iv-title">IV. SEGUIMIENTO CORRELATIVO DEL EXPEDIENTE (ANONIMIZADO LEY 29733)</h3>
@@ -1125,7 +1176,7 @@
 
   </div>
 
-  <!-- MODAL DE PROTECCIÓN DE DATOS Y PRINCIPIOS DE LEY 27444 -->
+  <!-- MODAL DE PROTECCIÓN DE DATOS Y COMUNICADO ADAPTADO -->
   <div id="modal-comunicado" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 540px; padding: 24px; border-top: 5px solid #750e2e;">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
@@ -1134,12 +1185,12 @@
           <path d="M12 8v4"/><path d="M12 16h.01"/>
         </svg>
         <div>
-          <h3 style="color: #3f0314; font-size: 15px; font-weight: 800; text-transform: uppercase;">COMUNICADO OFICIAL DE SEGURIDAD</h3>
-          <span style="font-size: 10px; color: #64748b;">Cumplimiento de la Ley N° 27444 (19 Principios) y Ley N° 29733</span>
+          <h3 style="color: #3f0314; font-size: 15px; font-weight: 800; text-transform: uppercase;">COMUNICADO OFICIAL DE SEGURIDAD Y VALIDEZ</h3>
+          <span style="font-size: 10px; color: #64748b;">Acreditación y Protección Institucional de Datos</span>
         </div>
       </div>
       <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 14px; border-radius: 10px; font-size: 12px; line-height: 1.6; color: #334155; text-align: justify; margin-bottom: 16px;">
-        A partir de la fecha, se ha incluido un nuevo campo como medida técnica de protección, para que solo las partes puedan acceder a sus expedientes; cumpliendo estrictamente con los <strong>19 Principios Generales de la Ley N° 27444</strong> (Simplicidad, Celeridad y Verdad Material) y las exigencias del <strong>MINJUSDH</strong>.
+        El presente entorno digital cumple estrictamente con las exigencias legales previstas en la <strong>Ley N° 27444</strong> y el marco normativo de <strong>Gobierno Digital (D. Leg. N° 1412)</strong>, asegurando un acceso transparente, la validez probatoria de las actuaciones electrónicas y la debida protección del derecho a la privacidad de los litigantes.
       </div>
       <button onclick="acceptComunicadoAndShowSearch()" class="btn-action-primary">
         <span>He leído y Acepto el Comunicado</span>
@@ -1147,7 +1198,7 @@
     </div>
   </div>
 
-  <!-- MODAL CAPTCHA INCLUSIVO -->
+  <!-- MODAL CAPTCHA INCLUSIVO CON TECLA ENTER -->
   <div id="modal-captcha" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 440px; padding: 22px; position: relative;">
       <button onclick="closeModal('modal-captcha')" style="position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: #64748b;">✕</button>
@@ -1165,7 +1216,7 @@
         <button onclick="generateRandomCaptcha()" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; background: white;" title="Nuevo Código">↻</button>
       </div>
 
-      <input type="text" id="captcha-input-field" placeholder="Escriba o escuche el código" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-weight: bold; margin-bottom: 12px;">
+      <input type="text" id="captcha-input-field" placeholder="Escriba el código y presione Enter" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-weight: bold; margin-bottom: 12px;" onkeypress="if(event.key==='Enter') validateCaptchaAction()">
 
       <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
         <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 12px; font-weight: bold; color: #334155;">
@@ -1203,7 +1254,7 @@
     </div>
   </div>
 
-  <!-- MODAL: VISOR DE RESOLUCIONES CON BARRA NEGRA DE CENSURA TOTAL -->
+  <!-- MODAL: VISOR DE RESOLUCIONES CON CENSURA -->
   <div id="modal-pdf-view" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 740px; background: #e2e8f0;">
       <div class="pdf-bar">
@@ -1232,52 +1283,54 @@
     </div>
   </div>
 
-  <!-- CHATBOT IURISNIANO CONFIGURADO PREDETERMINADAMENTE PARA CONSULTAS DE LEYES Y D. LEG. 1412 -->
+  <!-- CHATBOT IURISNIANO REANIMADO Y AMIGABLE -->
   <div id="chatbot-wrapper">
     <div id="chat-prompt-bubble" class="chat-incentive-bubble" onclick="openAndHidePromptChat()">
-      💬 ¿Consultas sobre Leyes o la Causa? ⚖️ ¡Iurisniano te responde!
+      💬 ¡Hola! Soy Iurisniano ⚖️ ¿Tienes dudas legales?
     </div>
 
     <div id="chatbot-bubble" onclick="openAndHidePromptChat()" title="Asistente Virtual Iurisniano">
-      <svg style="width: 32px; height: 32px; color: #ffffff;" viewBox="0 0 200 200" fill="none">
+      <svg class="chatbot-avatar-svg" style="width: 34px; height: 34px; color: #ffffff;" viewBox="0 0 200 200" fill="none">
         <circle cx="100" cy="100" r="90" fill="none" stroke="#fbcfe8" stroke-width="4"/>
         <path d="M100 25 L100 160" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
         <path d="M80 160 L120 160" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
         <path d="M50 55 L150 55" stroke="#fbcfe8" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="100" cy="55" r="7" fill="#ffffff"/>
+        <circle cx="100" cy="55" r="8" fill="#ffffff"/>
       </svg>
     </div>
   </div>
 
   <div id="chatbot-dialog">
-    <div style="background: linear-gradient(135deg, #3f0314, #be185d); color: white; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center;">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <div style="width: 30px; height: 30px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #750e2e; font-weight: bold; font-size: 13px;">⚖️</div>
+    <div style="background: linear-gradient(135deg, #3f0314, #be185d, #e11d48); color: white; padding: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 34px; height: 34px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #750e2e; font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">⚖️</div>
         <div>
-          <strong style="font-size: 13px;">IURISNIANO</strong>
-          <div style="font-size: 9px; color: #fce7f3;">Consultor de Leyes & Gobierno Digital</div>
+          <strong style="font-size: 14px; letter-spacing: 0.5px;">IURISNIANO</strong>
+          <div style="font-size: 9.5px; color: #fce7f3; display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block;"></span> Asistente Legal Digital
+          </div>
         </div>
       </div>
-      <button onclick="toggleChatbotWindow()" style="background: none; border: none; color: white; font-size: 16px; cursor: pointer;">✕</button>
+      <button onclick="toggleChatbotWindow()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">✕</button>
     </div>
 
-    <!-- BOTONES PREDISPUESTOS ENFOCADOS EN NORMATIVA DE LEYES Y DL 1412 -->
-    <div style="display: flex; gap: 4px; padding: 6px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
-      <button onclick="quickAskBot('¿Cuáles son los 19 principios de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">⚖️ Ley 27444 / DL 1412</button>
-      <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen Caso</button>
-      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Ejecución</button>
-      <button onclick="quickAskBot('¿Qué exige la Ley de Protección de Datos Personales 29733?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🔒 Ley N° 29733</button>
+    <!-- BOTONES DE NAVEGACIÓN RÁPIDA -->
+    <div style="display: flex; gap: 6px; padding: 8px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
+      <button onclick="quickAskBot('¿Cuáles son las garantías de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold; transition: background 0.2s;">⚖️ Ley 27444 / DL 1412</button>
+      <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen Caso</button>
+      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Ejecución</button>
+      <button onclick="quickAskBot('¿Qué exige la Ley de Protección de Datos Personales 29733?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🔒 Ley N° 29733</button>
     </div>
 
     <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
-      <div style="background: #ffffff; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--mag-border); max-width: 85%; align-self: flex-start;">
-        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>. Estoy programado para resolver tus dudas sobre la **Ley N° 27444 (19 Principios Administrativos)**, el **D. Leg. N° 1412 de Gobierno Digital**, la **Ley N° 29733** y el seguimiento de tu causa judicial.
+      <div style="background: #ffffff; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--mag-border); max-width: 88%; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu guía interactivo. Estoy listo para ayudarte con consultas de la **Ley N° 27444**, el **D. Leg. N° 1412 de Gobierno Digital**, la **Ley N° 29733** y los detalles del expediente judicial.
       </div>
     </div>
 
-    <div style="padding: 8px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; background: white; align-items: center;">
-      <input type="text" id="chatbot-text-input" placeholder="Consulta sobre leyes o el proceso..." style="flex-grow: 1; padding: 7px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 11px;" onkeypress="if(event.key==='Enter') sendChatMessage()">
-      <button onclick="sendChatMessage()" style="background: #750e2e; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">Enviar</button>
+    <div style="padding: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; background: white; align-items: center;">
+      <input type="text" id="chatbot-text-input" placeholder="Escribe tu consulta y presiona Enter..." style="flex-grow: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 11px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#be185d'" onblur="this.style.borderColor='#cbd5e1'" onkeypress="if(event.key==='Enter') sendChatMessage()">
+      <button onclick="sendChatMessage()" style="background: linear-gradient(135deg, #750e2e, #be185d); color: white; border: none; padding: 8px 14px; border-radius: 10px; font-size: 11px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 6px rgba(190,24,93,0.3);">Enviar</button>
     </div>
   </div>
 
@@ -1327,9 +1380,9 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA CON MULTI-IDIOMA EN AYMARA Y CONOCIMIENTO LEGAL DEL BOT -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA CON ENTER, MULTI-IDIOMA Y SCRIPT DEL CHATBOT -->
   <script>
-    // CARGAPANTALLA INICIAL DE 3 SEGUNDOS FLUIDO
+    // CARGAPANTALLA INICIAL
     window.addEventListener('DOMContentLoaded', () => {
       const splashOverlay = document.getElementById('full-page-splash');
       const progressBar = document.getElementById('splash-progress-bar');
@@ -1352,7 +1405,7 @@
       requestAnimationFrame(animateProgress);
     });
 
-    // BASE DE DATOS DEL EXPEDIENTE CON CENSURA APLICADA
+    // BASE DE DATOS DEL EXPEDIENTE CON CENSURA
     var ACTUADOS = [
       {
         n: 1, f: "Fjs. 1-2", d: "26/06/2019", t: "Actuado N° 01: Cargo / Carátula de Ingreso", des: "Mesa de Partes Única de Juliaca - CDG N° 00174-2019.",
@@ -1586,7 +1639,7 @@
       document.getElementById('panel-search-form').style.display = 'block';
     }
 
-    // MODALES Y TEXTOS INSTITUCIONALES COMPLETOS
+    // MODALES Y TEXTOS INSTITUCIONALES
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
@@ -1623,9 +1676,9 @@
         title.innerText = "📖 INSTRUCTIVO DE NAVEGACIÓN Y USO DEL PORTAL";
         body.innerHTML = `
           <div style="line-height:1.7;">
-            <p><strong>1. Búsqueda de Causas:</strong> Valide la casilla "No soy un robot" y el código CAPTCHA en pantalla.</p>
+            <p><strong>1. Búsqueda de Causas:</strong> Valide la casilla "No soy un robot" y el código CAPTCHA en pantalla. Puede presionar la tecla Enter para ingresar.</p>
             <p><strong>2. Lector Inclusivo TalkBack:</strong> Active la lectura por voz con el botón 🔊 o mediante la combinación de teclas <strong>Alt + A</strong>.</p>
-            <p><strong>3. Visualización y Descarga:</strong> En la tabla de actuados, haga clic directo sobre cualquier fila para abrir el visor con barra negra de censura (*blackout*).</p>
+            <p><strong>3. Visualización y Descarga:</strong> Seleccione cualquier fila o nodo de la línea de tiempo para desplegar la resolución anonimizada.</p>
             <div style="margin-top: 14px; text-align: center;">
               <a href="https://www.youtube.com" target="_blank" style="background: #dc2626; color: white; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; display: inline-flex; align-items: center; gap: 6px; font-size: 11px;">
                 ▶️ Ver Video Tutorial Interactivo en YouTube
@@ -1695,7 +1748,7 @@
       openModal('modal-generic-interop');
     }
 
-    // VISOR PDF CON CENSURA EN NEGRO
+    // VISOR PDF CON CENSURA
     let pdfScaleLevel = 1;
     let currentActiveAct = null;
 
@@ -1746,7 +1799,7 @@
       link.click();
     }
 
-    // RENDERIZADO PANTALLA 5
+    // RENDERIZADO PANTALLA 5 (SIN FRASES REDUNDANTES "CLIC AQUÍ")
     function renderScreen5Content() {
       const tBox = document.getElementById('timeline-flow-box');
       tBox.innerHTML = '';
@@ -1761,7 +1814,7 @@
               <strong style="color:#750e2e;">${item.t}</strong>
               <span style="color:#64748b; font-family:monospace;">${item.d}</span>
             </div>
-            <div style="font-size:11px; color:#334155;">${item.des} <span style="color:#be185d; font-weight:bold;">(Clic para abrir PDF)</span></div>
+            <div style="font-size:11px; color:#334155;">${item.des}</div>
           </div>
         `;
         tBox.appendChild(div);
@@ -1792,7 +1845,7 @@
       });
     }
 
-    // CHATBOT IURISNIANO: PREDETERMINADO PARA LEYES (LEY 27444 Y DL 1412)
+    // CHATBOT IURISNIANO CON INTERFAZ Y RESPUESTAS MEJORADAS
     function openAndHidePromptChat() {
       document.getElementById('chat-prompt-bubble').style.display = 'none';
       toggleChatbotWindow();
@@ -1815,18 +1868,18 @@
 
       const log = document.getElementById('chatbot-log');
 
-      // Mensaje del usuario
+      // Mensaje enviado por el usuario
       const uMsg = document.createElement('div');
-      uMsg.style = "background:#750e2e; color:white; padding:8px 12px; border-radius:12px; max-width:85%; align-self:flex-end;";
+      uMsg.style = "background:linear-gradient(135deg, #750e2e, #be185d); color:white; padding:9px 13px; border-radius:14px; max-width:85%; align-self:flex-end; font-size:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);";
       uMsg.innerText = val;
       log.appendChild(uMsg);
       input.value = "";
       log.scrollTop = log.scrollHeight;
 
-      // Mensaje temporal con animación de 3 puntos
+      // Animación de tres puntos mientras responde
       const typingMsg = document.createElement('div');
       typingMsg.id = "bot-typing-temp";
-      typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:12px; padding:6px 10px; max-width:85%; align-self:flex-start;";
+      typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:14px; padding:6px 10px; max-width:85%; align-self:flex-start;";
       typingMsg.innerHTML = `
         <div class="typing-indicator">
           <div class="typing-dot"></div>
@@ -1837,36 +1890,35 @@
       log.appendChild(typingMsg);
       log.scrollTop = log.scrollHeight;
 
-      // Lógica de respuesta normativa ampliada
+      // Procesamiento de respuestas
       const q = val.toLowerCase();
-      let resp = "Como **IURISNIANO**, puedo ofrecerte asesoría en la **Ley N° 27444 (19 Principios)**, el **D. Leg. N° 1412 (Gobierno Digital)**, la **Ley N° 29733** o el estado procesal de la causa.";
+      let resp = "Con gusto respondo tu inquietud. Como **IURISNIANO**, puedo orientarte sobre la **Ley N° 27444**, el **D. Leg. N° 1412 (Gobierno Digital)**, la **Ley N° 29733** o el estado del caso.";
 
-      if (q.includes("27444") || q.includes("principios") || q.includes("1412")) {
-        resp = `📜 **MARCO LEGAL Y 19 PRINCIPIOS EN EL ENTORNO DIGITAL:**<br><br>
-        • **Ley N° 27444 (19 Principios Administrativos):** Destacan el *Principio de Legalidad*, *Debido Procedimiento*, *Impulso de Oficio*, *Verdad Material*, *Simplicidad*, *Celeridad* y *Eficacia* garantizados en la tramitación electrónica.<br><br>
-        • **D. Leg. N° 1412 (Gobierno Digital):** Regula la Identidad Digital, Interoperabilidad (PISDP), la validez de las casillas electrónicas SINOE y el Expediente Digital con valor probatorio.`;
+      if (q.includes("27444") || q.includes("principios") || q.includes("1412") || q.includes("garantias")) {
+        resp = `📜 **CUMPLIMIENTO NORMATIVO DIGITAL:**<br><br>
+        • **Ley N° 27444:** Garantiza el debido procedimiento, impulso de oficio, verdad material, celeridad y eficacia en cada acto procesal conducido por medios digitales.<br><br>
+        • **D. Leg. N° 1412 (Gobierno Digital):** Fundamenta la autenticidad del Expediente Judicial Electrónico (EJE), el uso de la firma digital con valor legal y la interoperabilidad entre entidades del Estado.`;
       } else if (q.includes("resumen")) {
-        resp = "📋 **RESUMEN EJECUTIVO:**<br>• **Materia:** Desnaturalización de Contrato.<br>• **Partes:** An*** Le*** Su*** Qu*** vs EsSalud.<br>• **Fallo:** Sentencia FUNDADA confirmada en 2da instancia.<br>• **Estado:** En **Etapa de Ejecución de Sentencia Firme** (Res. N° 15).";
+        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Desnaturalización de Contrato.<br>• **Partes:** An*** Le*** Su*** Qu*** vs EsSalud.<br>• **Fallo:** Demanda FUNDADA en 1ra y 2da instancia.<br>• **Estado Actual:** **Etapa de Ejecución de Sentencia Firme**.";
       } else if (q.includes("etapa") || q.includes("ejecucion")) {
-        resp = "🎯 **ETAPA DE EJECUCIÓN:** La causa cuenta con Sentencia Firme. Mediante la Resolución N° 15, se le requiere a EsSalud registrar al trabajador en el T-Registro de SUNAT e incluirlo en planillas (D. Leg. 728).";
+        resp = "🎯 **ETAPA DE EJECUCIÓN DE SENTENCIA:** La causa cuenta con sentencia firme e inalterable. Mediante la Resolución N° 15, el Juzgado requiere formalmente a EsSalud registrar al trabajador en el T-Registro de SUNAT e incluirlo en planillas bajo el D. Leg. 728.";
       } else if (q.includes("29733") || q.includes("datos") || q.includes("privacidad")) {
-        resp = "🔒 **LEY N° 29733 (PROTECCIÓN DE DATOS):** Exige la técnica de anonimización (*blackout*) en nombres y documentos de personas naturales en las plataformas públicas para salvaguardar el derecho fundamental a la intimidad.";
+        resp = "🔒 **LEY N° 29733 (PROTECCIÓN DE DATOS):** Aplica la censura (*blackout*) automatizada en nombres y documentos de identidad dentro de los visores públicos para salvaguardar la intimidad de las partes procesales.";
       }
 
-      // Reemplazo tras 900ms
       setTimeout(() => {
         const temp = document.getElementById("bot-typing-temp");
         if (temp) temp.remove();
 
         const bMsg = document.createElement('div');
-        bMsg.style = "background:#ffffff; padding:8px 12px; border-radius:12px; border:1px solid var(--mag-border); max-width:85%; align-self:flex-start; font-size:12px; line-height:1.5;";
+        bMsg.style = "background:#ffffff; padding:10px 13px; border-radius:14px; border:1px solid var(--mag-border); max-width:88%; align-self:flex-start; font-size:12px; line-height:1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.03);";
         bMsg.innerHTML = resp;
         log.appendChild(bMsg);
         log.scrollTop = log.scrollHeight;
-      }, 900);
+      }, 850);
     }
 
-    // MULTI-IDIOMA TOTAL CON INCLUSIÓN DEL AYMARA DE PERÚ (AY)
+    // MULTI-IDIOMA TOTAL
     var currentLang = 'es';
     var DICTIONARY = {
       es: { appTitle: "PORTAL ELECTRÓNICO JUDICIAL", home: "Inicio", mision: "Misión", vision: "Visión", transp: "Transparencia", contact: "Contáctanos", inst: "📖 Instructivo", searchBtn: "🔍 Búsqueda de Expediente", exitBtn: "🚪 Salir" },
