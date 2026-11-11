@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PORTAL ELECTRÓNICO JUDICIAL | Corte Superior de Justicia de Puno</title>
+  <title>PORTAL ELECTRÓNICO JUDICIAL | Expediente N° 00170-2023</title>
   
   <style>
     /* ==========================================================
-       VARIABLES Y PALETA CROMÁTICA INSTITUCIONAL
+       VARIABLES Y PALETA CROMÁTICA INSTITUCIONAL (MAGENTA)
        ========================================================== */
     :root {
       --mag-darkest: #18020e;
@@ -118,20 +118,7 @@
       transition: width 0.1s linear;
     }
 
-    /* MARCA DE AGUA FIJA DE LA DIOSA THEMIS */
-    .watermark-bg {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(75vw, 420px);
-      height: auto;
-      opacity: 0.038;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ENCABEZADO FIJO */
+    /* ENCABEZADO FIJO (ART 40 LEY 1412) */
     .sticky-header-container {
       position: sticky;
       top: 0;
@@ -251,6 +238,7 @@
       color: #ffffff;
     }
 
+    /* BOTÓN DE ACCESIBILIDAD (ART 24 LEY 1412) */
     .menu-btn-talkback {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid #fbcfe8;
@@ -482,8 +470,8 @@
       align-items: center;
       gap: 4px;
     }
-    .btn-download-pdf { background: #475569; color: white; }
-    .btn-download-pdf:hover { background: #334155; }
+    .btn-view-pdf { background: #0284c7; color: white; }
+    .btn-view-pdf:hover { background: #0369a1; }
 
     /* MODALES CON TRANSICIONES ANIMADAS */
     .modal-overlay {
@@ -513,7 +501,7 @@
     }
     @keyframes popSheet { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-    /* VISOR PDF CON IFRAME PARA DOCUMENTOS DE GITHUB */
+    /* VISOR PDF DIRECTO (IFRAME/EMBED) */
     .pdf-bar {
       background: #334155;
       color: white;
@@ -526,28 +514,17 @@
       top: 0;
       z-index: 10;
     }
-    .pdf-paper {
-      background: #ffffff;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      margin: 16px auto;
-      max-width: 680px;
-      font-family: "Times New Roman", Times, Georgia, serif;
-      font-size: 13px;
-      line-height: 1.6;
-      border: 1px solid #cbd5e1;
-      position: relative;
-      /* Se quita el padding para que el iframe o embed ocupe todo */
-      overflow: hidden;
-    }
-    .pdf-censored-black {
-      background: #000000;
-      color: #000000;
-      user-select: none;
-      padding: 0 4px;
-      border-radius: 2px;
+
+    /* IMÁGENES PIDE Y DIFUMINADO/PIXELADO */
+    .pide-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Filtro de difuminado para protección visual */
+      filter: blur(4px) contrast(1.1);
     }
 
-    /* BURBUJAS FLOTANTES INFERIORES DE NOTIFICACIÓN */
+    /* BURBUJA ACADÉMICA (SE ELIMINÓ LA DE CIUDADANO DIGITAL) */
     #academic-left-notice {
       position: fixed;
       bottom: 22px;
@@ -563,23 +540,6 @@
       line-height: 1.4;
       color: var(--mag-dark);
       animation: floatLeftPrompt 4s ease-in-out infinite;
-    }
-
-    #citizen-digital-notice {
-      position: fixed;
-      bottom: 85px;
-      left: 22px;
-      z-index: 3000;
-      background: #f0fdf4;
-      border: 2px solid #16a34a;
-      border-radius: 14px;
-      padding: 10px 14px;
-      max-width: 300px;
-      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.25);
-      font-size: 11px;
-      line-height: 1.4;
-      color: #14532d;
-      animation: floatLeftPrompt 4.5s ease-in-out infinite 0.5s;
     }
 
     @keyframes floatLeftPrompt {
@@ -599,7 +559,7 @@
       cursor: pointer;
     }
 
-    /* CHATBOT IURISNIANO: ANIMACIONES DINÁMICAS Y AMIGABLES */
+    /* CHATBOT IURISNIANO (OPTIMIZADO Y SIN BOTONES DE LEYES) */
     #chatbot-wrapper {
       position: fixed;
       bottom: 22px;
@@ -756,13 +716,6 @@
     <button class="close-notice-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
     <div style="font-weight: 800; color: #750e2e; margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
     <div>Prototipo simulado universitario (D. Leg. N° 1412, Ley N° 27444 / Ley N° 29733 de Datos Personales).</div>
-  </div>
-
-  <!-- BURBUJA FLOTANTE DE CIUDADANO DIGITAL (SEPARADA DE LA PORTADA) -->
-  <div id="citizen-digital-notice">
-    <button class="close-notice-btn" onclick="document.getElementById('citizen-digital-notice').style.display='none'" style="color: #15803d;">✕</button>
-    <div style="font-weight: 800; color: #15803d; margin-bottom: 2px;">🌱 ¡Conviértete en un Ciudadano Digital!</div>
-    <div>Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.</div>
   </div>
 
   <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS -->
@@ -999,7 +952,7 @@
           </div>
 
           <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 16px;">
-            Expediente asignado: <strong style="color: #750e2e;">00170-2023-0-2101-JR-LA-01</strong> (Mun. Prov. Chucuito - Juli vs Hu*** Du*** Al*** Ay***)
+            Expediente asignado: <strong style="color: #750e2e;">00170-2023-0-2101-JR-LA-01</strong>
           </div>
 
           <button onclick="switchScreen(4)" class="btn-action-primary" id="p2-btn-submit">
@@ -1050,15 +1003,10 @@
         <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-2')">
-            <h3 id="sec-ii-title">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA (MCCLO)</h3>
+            <h3 id="sec-ii-title">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA</h3>
             <span id="acc-sec-2-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-2" class="accordion-content">
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-              <button onclick="downloadCompleteExpediente()" class="btn-row-action btn-download-pdf" id="btn-print-exp">
-                📥 Descargar Expediente PDF (Anonimizado)
-              </button>
-            </div>
             <div class="stepper-bar">
               <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>1. Postulatoria</strong></div>
               <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>2. Probatoria</strong></div>
@@ -1069,58 +1017,50 @@
           </div>
         </div>
 
-        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD -->
+        <!-- III. PARTES PROCESALES -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-3')">
-            <h3 id="sec-iii-title">III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412 / LEY 27444)</h3>
+            <h3 id="sec-iii-title">III. PARTES PROCESALES (ANONIMIZADO LEY N° 29733)</h3>
             <span id="acc-sec-3-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-3" class="accordion-content">
-            
             <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
               <div style="font-weight: bold; font-size: 13px; color: #750e2e;">DEMANDANTE: Hu*** Du*** Al*** Ay*** (DNI 4512****)</div>
               <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Demandante Principal | Vínculo laboral: Operador en Custodio</div>
             </div>
-
-            <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
+            <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px;">
               <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Municipalidad Provincial de Chucuito - Juli (RUC 2014****)</div>
               <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Representación: Procuraduría Pública Municipal</div>
             </div>
-
-            <!-- BÚSQUEDA ABIERTA CON ENTER -->
-            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-              <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Módulo de Consulta Interoperable ABIERTO (PISDP - D. Leg. 1412)</strong>
-              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos de cualquier persona..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;" onkeypress="if(event.key==='Enter') triggerDynamicInterop('RENIEC')">
-              </div>
-              
-              <div class="interop-group-right">
-                <button onclick="triggerDynamicInterop('RENIEC')" class="btn-interop btn-reniec">
-                  <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <span>RENIEC</span>
-                </button>
-                <button onclick="triggerDynamicInterop('MIGRACIONES')" class="btn-interop btn-migra">
-                  <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg>
-                  <span>MIGRACIONES</span>
-                </button>
-                <button onclick="triggerDynamicInterop('PNP')" class="btn-interop btn-pnp">
-                  <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  <span>PNP</span>
-                </button>
-                <button onclick="triggerDynamicInterop('INPE')" class="btn-interop btn-inpe">
-                  <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/></svg>
-                  <span>INPE</span>
-                </button>
-              </div>
-            </div>
-
           </div>
         </div>
 
-        <!-- IV. SEGUIMIENTO CORRELATIVO CON VISOR DIRECTO A GITHUB -->
+        <!-- IV. MÓDULO DE INTEROPERABILIDAD (PIDE) -->
+        <div class="accordion-card">
+          <div class="accordion-header" onclick="toggleAccordion('acc-sec-pide')">
+            <h3 id="sec-pide-title">IV. MÓDULO DE INTEROPERABILIDAD (PIDE)</h3>
+            <span id="acc-sec-pide-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
+          </div>
+          <div id="acc-sec-pide" class="accordion-content">
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
+              <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Consultas en Línea (PIDE)</strong>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;" onkeypress="if(event.key==='Enter') triggerDynamicInterop('RENIEC')">
+              </div>
+              <div class="interop-group-right">
+                <button onclick="triggerDynamicInterop('RENIEC')" class="btn-interop btn-reniec">RENIEC</button>
+                <button onclick="triggerDynamicInterop('MIGRACIONES')" class="btn-interop btn-migra">MIGRACIONES</button>
+                <button onclick="triggerDynamicInterop('PNP')" class="btn-interop btn-pnp">PNP</button>
+                <button onclick="triggerDynamicInterop('INPE')" class="btn-interop btn-inpe">INPE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- V. SEGUIMIENTO CORRELATIVO CON VISOR DIRECTO A GITHUB -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-4')">
-            <h3 id="sec-iv-title">IV. SEGUIMIENTO CORRELATIVO DEL EXPEDIENTE</h3>
+            <h3 id="sec-iv-title">V. SEGUIMIENTO CORRELATIVO DEL EXPEDIENTE</h3>
             <span id="acc-sec-4-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-4" class="accordion-content">
@@ -1145,7 +1085,7 @@
 
   </div>
 
-  <!-- MODAL DE PROTECCIÓN DE DATOS Y COMUNICADO ADAPTADO -->
+  <!-- MODAL DE COMUNICADO DE SEGURIDAD (LEY 27444 Y ART 40 LEY 1412) -->
   <div id="modal-comunicado" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 540px; padding: 24px; border-top: 5px solid #750e2e;">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
@@ -1172,7 +1112,7 @@
     <div class="modal-sheet" style="max-width: 440px; padding: 22px; position: relative;">
       <button onclick="closeModal('modal-captcha')" style="position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: #64748b;">✕</button>
 
-      <h3 style="color: #3f0314; font-size: 14px; font-weight: bold; margin-bottom: 6px;">Autenticación Inclusiva de Seguridad</h3>
+      <h3 style="color: #3f0314; font-size: 14px; font-weight: bold; margin-bottom: 6px;">Autenticación de Seguridad (1 Factor)</h3>
       <p style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
         Por medidas de seguridad y protección automatizada, complete la verificación:
       </p>
@@ -1181,7 +1121,7 @@
         <div id="captcha-display-text" style="background: #18020e; color: #fbcfe8; font-family: monospace; font-size: 20px; font-weight: 800; letter-spacing: 4px; padding: 8px 12px; border-radius: 8px; text-decoration: line-through; transform: skewX(-8deg);">
           8M4X1
         </div>
-        <button onclick="speakCaptchaCode()" style="padding: 8px 10px; border: 1px solid #be185d; background: #fdf2f8; color: #be185d; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Dictado por Voz">🔊 Audiodictado</button>
+        <button onclick="speakCaptchaCode()" style="padding: 8px 10px; border: 1px solid #be185d; background: #fdf2f8; color: #be185d; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Dictado por Voz (Accesibilidad Art. 24)">🔊 Audiodictado</button>
         <button onclick="generateRandomCaptcha()" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; background: white;" title="Nuevo Código">↻</button>
       </div>
 
@@ -1196,20 +1136,21 @@
       </div>
 
       <button onclick="validateCaptchaAction()" class="btn-action-primary">Validar y Continuar</button>
-      <div id="captcha-error-text" style="display: none; color: #e11d48; font-size: 11px; margin-top: 6px; text-align: center; font-weight: bold;">Marque la casilla e introduzca el código.</div>
+      <div id="captcha-error-text" style="display: none; color: #e11d48; font-size: 11px; margin-top: 6px; text-align: center; font-weight: bold;">Marque la casilla e introduzca el código correcto.</div>
     </div>
   </div>
 
-  <!-- MODAL: INTEROPERABILIDAD -->
+  <!-- MODAL: INTEROPERABILIDAD CON FOTOS REALES DIFUMINADAS -->
   <div id="modal-generic-interop" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 500px; padding: 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 14px;">
-        <div id="gen-interop-heading" style="font-weight: 800; color: #0284c7; font-size: 13px;">RENIEC - CONSULTA REGISTRAL</div>
+        <div id="gen-interop-heading" style="font-weight: 800; color: #0284c7; font-size: 13px;">PIDE - CONSULTA INTEROPERABLE</div>
         <button onclick="closeModal('modal-generic-interop')" style="background: none; border: none; font-size: 18px; cursor: pointer;">✕</button>
       </div>
 
       <div style="display: flex; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 10px;">
-        <div id="interop-avatar-frame" style="width: 110px; height: 125px; background: #e2e8f0; border: 2px solid #0284c7; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0;">
+        <div id="interop-avatar-frame" style="width: 110px; height: 145px; background: #e2e8f0; border: 2px solid #0284c7; border-radius: 6px; position: relative; overflow: hidden; flex-shrink: 0;">
+          <!-- Aquí se inyectará la imagen realista (pixelada) -->
         </div>
 
         <div style="flex-grow: 1; font-size: 11px; line-height: 1.7;">
@@ -1223,18 +1164,17 @@
     </div>
   </div>
 
-  <!-- MODAL: VISOR DE RESOLUCIONES CON IFRAME A GITHUB -->
+  <!-- MODAL: VISOR DE RESOLUCIONES DIRECTO EN LÍNEA (SIN DESCARGAS) -->
   <div id="modal-pdf-view" class="modal-overlay">
-    <div class="modal-sheet" style="max-width: 800px; background: #e2e8f0; overflow: hidden; display: flex; flex-direction: column; height: 85vh;">
+    <div class="modal-sheet" style="max-width: 840px; background: #e2e8f0; overflow: hidden; display: flex; flex-direction: column; height: 85vh;">
       <div class="pdf-bar">
-        <span id="pdf-doc-name">Documento_del_Expediente.pdf</span>
+        <span id="pdf-doc-name" style="font-weight: bold; font-size: 13px;">Documento_del_Expediente.pdf</span>
         <div style="display: flex; gap: 6px; align-items: center;">
-          <button onclick="downloadSinglePdf()" style="background: #475569; border: none; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer;">💾 Descargar Archivo</button>
-          <button onclick="closeModal('modal-pdf-view')" style="background: #ef4444; border: none; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer;">✕ Cerrar</button>
+          <button onclick="closeModal('modal-pdf-view')" style="background: #ef4444; border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">✕ Cerrar Visor</button>
         </div>
       </div>
       <div class="pdf-paper" id="pdf-doc-paper" style="flex-grow: 1; margin: 0; border-radius: 0; border: none; display: flex; padding: 0;">
-        <!-- Aquí se cargará el iframe con el PDF de GitHub -->
+        <!-- El iframe / embed se insertará dinámicamente aquí -->
       </div>
     </div>
   </div>
@@ -1251,10 +1191,10 @@
     </div>
   </div>
 
-  <!-- CHATBOT IURISNIANO REANIMADO Y AMIGABLE -->
+  <!-- CHATBOT IURISNIANO (SOLO AYUDA ÚTIL DEL EXPEDIENTE Y PRIVACIDAD) -->
   <div id="chatbot-wrapper">
     <div id="chat-prompt-bubble" class="chat-incentive-bubble" onclick="openAndHidePromptChat()">
-      💬 ¡Hola! Soy Iurisniano ⚖️ ¿Tienes dudas del Caso Almanza?
+      💬 ¡Hola! Soy Iurisniano ⚖️ ¿Deseas un resumen del expediente?
     </div>
 
     <div id="chatbot-bubble" onclick="openAndHidePromptChat()" title="Asistente Virtual Iurisniano">
@@ -1275,24 +1215,23 @@
         <div>
           <strong style="font-size: 14px; letter-spacing: 0.5px;">IURISNIANO</strong>
           <div style="font-size: 9.5px; color: #fce7f3; display: flex; align-items: center; gap: 4px;">
-            <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block;"></span> Asistente Legal Digital
+            <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block;"></span> Asistente Legal Privado
           </div>
         </div>
       </div>
       <button onclick="toggleChatbotWindow()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">✕</button>
     </div>
 
-    <!-- BOTONES DE NAVEGACIÓN RÁPIDA -->
+    <!-- BOTONES ÚTILES DEL CASO -->
     <div style="display: flex; gap: 6px; padding: 8px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
-      <button onclick="quickAskBot('¿Cuáles son las garantías de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold; transition: background 0.2s;">⚖️ Ley 27444 / DL 1412</button>
       <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen Caso</button>
-      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Decisión / Sentencia</button>
-      <button onclick="quickAskBot('¿Qué exige la Ley de Protección de Datos Personales 29733?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🔒 Ley N° 29733</button>
+      <button onclick="quickAskBot('¿En qué etapa nos encontramos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Estado Actual</button>
+      <button onclick="quickAskBot('¿Qué significa Desnaturalización CAS?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">💡 Concepto Legal</button>
     </div>
 
     <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
       <div style="background: #ffffff; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--mag-border); max-width: 88%; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu guía interactivo. Estoy listo para ayudarte con consultas sobre el **Expediente N° 00170-2023 (Almanza vs Mun. de Chucuito)** y el marco de **Gobierno Digital**.
+        ¡Hola! 👋 Soy <strong>IURISNIANO</strong>. Te guiaré por la información útil del **Expediente N° 00170-2023** protegiendo de forma estricta los datos personales involucrados. ¿En qué te ayudo?
       </div>
     </div>
 
@@ -1304,7 +1243,7 @@
 
   <!-- FOOTER ACADÉMICO -->
   <footer class="academic-footer">
-    <div><strong>© 2026 PODER JUDICIAL DEL PERÚ - CORTE SUPERIOR DE JUSTICIA DE PUNO. TODOS LOS DERECHOS RESERVADOS.</strong></div>
+    <div><strong>© 2026 PORTAL IURIS DILIGERE - PODER JUDICIAL DEL PERÚ. TODOS LOS DERECHOS RESERVADOS.</strong></div>
     
     <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-top: 8px;">SÍGUENOS EN:</div>
     
@@ -1336,7 +1275,7 @@
     </div>
 
     <div style="color: #cbd5e1; margin-top: 4px; font-size: 10px;">
-      PORTAL ELECTRÓNICO JUDICIAL | PROTOTIPO ACADÉMICO - GOBIERNO DIGITAL Y DERECHO INFORMÁTICO
+      PORTAL ELECTRÓNICO JUDICIAL | GOBIERNO DIGITAL Y DERECHO INFORMÁTICO
     </div>
     <div style="font-size: 10px; color: #94a3b8; margin-top: 2px;">
       Autoría: Sonia Pilar Condori Ruelas | Docente: Dr. Michael Espinoza Coila
@@ -1348,7 +1287,7 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA CON ENTER, MULTI-IDIOMA Y SCRIPT DEL CHATBOT -->
+  <!-- LÓGICA JAVASCRIPT: ENTER, MULTI-IDIOMA, IMÁGENES REALES, VISOR DIRECTO Y CHATBOT -->
   <script>
     // CARGA PANTALLA INICIAL
     window.addEventListener('DOMContentLoaded', () => {
@@ -1376,7 +1315,7 @@
     // BASE DE DATOS DEL EXPEDIENTE ALMANZA CON ENLACES REALES A GITHUB
     var ACTUADOS = [
       {
-        n: 1, d: "2023", t: "Actuado N° 01: Demanda Principal", des: "Demanda interpuesta por Hugo Durán Almanza Aycaya.",
+        n: 1, d: "2023", t: "Actuado N° 01: Demanda Principal", des: "Demanda laboral inicial interpuesta.",
         title: "Demanda.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/1Demanda.pdf"
       },
       {
@@ -1388,7 +1327,7 @@
         title: "Resolucion1.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/3RESOLUCION1.pdf"
       },
       {
-        n: 4, d: "2023", t: "Actuado N° 04: Absolución", des: "Escrito de absolución / contestación de demanda de la Municipalidad.",
+        n: 4, d: "2023", t: "Actuado N° 04: Absolución", des: "Escrito de contestación de demanda (entidad municipal).",
         title: "Absolucion.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/4ABSOLUCION.pdf"
       },
       {
@@ -1396,7 +1335,7 @@
         title: "Audiencia_Conciliacion.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/5AUDIENCIA%20DE%20CONCILIACI%C3%93N.pdf"
       },
       {
-        n: 6, d: "2023", t: "Actuado N° 06: Notificación 2", des: "Cédula de notificación procesal.",
+        n: 6, d: "2023", t: "Actuado N° 06: Notificación 2", des: "Cédula de notificación procesal de seguimiento.",
         title: "Notificacion2.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/6NOTIFICACION.pdf"
       },
       {
@@ -1404,7 +1343,7 @@
         title: "Audiencia_Juzgamiento.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/7AUDIENCIA%20DE%20JUZGAMIENTO.pdf"
       },
       {
-        n: 8, d: "2023", t: "Actuado N° 08: Resolución N° 02 (Sentencia)", des: "Sentencia de Primera Instancia.",
+        n: 8, d: "2023", t: "Actuado N° 08: Resolución N° 02 (Sentencia)", des: "Sentencia de Primera Instancia (Desnaturalización).",
         title: "Resolucion2.pdf", url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/5c3e08f585b6d6159eb0419ff36856a61738d826/8RESOLUCION2.pdf"
       },
       {
@@ -1426,14 +1365,14 @@
       }
     }
 
-    // MODO TALKBACK
+    // LECTOR DE VOZ TALKBACK (ACCESIBILIDAD ART 24 LEY 1412)
     let isTalkBackActive = false;
     function toggleTalkBackMode() {
       isTalkBackActive = !isTalkBackActive;
       const btn = document.getElementById('nav-item-talkback');
       if (isTalkBackActive) {
         btn.classList.add('active-tb');
-        speakText("Lector de pantalla TalkBack activado.");
+        speakText("Lector de pantalla activado para accesibilidad e inclusión ciudadana.");
       } else {
         btn.classList.remove('active-tb');
         window.speechSynthesis.cancel();
@@ -1460,7 +1399,7 @@
     }
 
     function speakCaptchaCode() {
-      speakText("El código de seguridad es: " + currentCaptchaCode.split('').join(' '));
+      speakText("El código de validación de un factor es: " + currentCaptchaCode.split('').join(' '));
     }
 
     // NAVEGACIÓN ENTRE PANTALLAS
@@ -1553,7 +1492,7 @@
       }
     }
 
-    // CAPTCHA
+    // CAPTCHA BÁSICO (1 FACTOR)
     let currentCaptchaCode = "";
     function generateRandomCaptcha() {
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -1586,7 +1525,7 @@
       document.getElementById('panel-search-form').style.display = 'block';
     }
 
-    // MODALES Y TEXTOS INSTITUCIONALES
+    // MODALES Y TEXTOS INSTITUCIONALES (ART 40 LEY 1412)
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
@@ -1597,48 +1536,46 @@
       if (topic === 'mision') {
         title.innerText = "Misión Institucional del Poder Judicial";
         body.innerHTML = `
-          <p style="margin-bottom: 8px;">Administrar Justicia a través de sus órganos jurisdiccionales, con arreglo a la Constitución y a las leyes, garantizando la seguridad jurídica, la tutela jurisdiccional efectiva y la paz social en toda la circunscripción de la Corte Superior de Justicia de Puno.</p>
-          <p>Garantizar el acceso transparente y oportuno a los procesos mediante herramientas informáticas de Gobierno Digital (EJE, SINOE y CEJ).</p>
+          <p style="margin-bottom: 8px;">Administrar Justicia a través de sus órganos jurisdiccionales, garantizando la seguridad jurídica y la tutela jurisdiccional efectiva en toda la Corte Superior de Justicia de Puno.</p>
+          <p>Cumplimos con la estandarización de las Sedes Digitales conforme al Art. 40 de la Ley N° 1412.</p>
         `;
       } else if (topic === 'vision') {
         title.innerText = "Visión del Poder Judicial del Perú";
         body.innerHTML = `
-          <p style="margin-bottom: 8px;">Ser un Poder del Estado autónomo, moderno, transparente, eficiente y predecible, con estándares de excelencia en el servicio de administración de justicia.</p>
-          <p>Liderar la transformación digital e inclusión universal orientada al ciudadano con cero uso de papel y tramitación electrónica interoperable.</p>
+          <p style="margin-bottom: 8px;">Ser un Poder del Estado moderno, transparente y accesible, con altos estándares de excelencia en el servicio ciudadano.</p>
+          <p>Lideramos la inclusión universal brindando plataformas interoperables sin barreras tecnológicas.</p>
         `;
       } else if (topic === 'transparencia') {
         title.innerText = "Portal de Transparencia Estándar";
         body.innerHTML = `
-          <p style="margin-bottom: 8px;">En cumplimiento de la Ley N° 27806 (Ley de Transparencia y Acceso a la Información Pública), la Corte Superior de Justicia de Puno pone a disposición ciudadana el acceso a ejecutorias, cuadro de méritos, contrataciones y directorio de despachos.</p>
-          <p>Todas las resoluciones emitidas son de dominio público previa anonimización técnica bajo la Ley N° 29733.</p>
+          <p style="margin-bottom: 8px;">Ponemos a disposición ciudadana el acceso a las ejecutorias jurisdiccionales.</p>
+          <p>Las actuaciones son públicas, conservando estrictamente el anonimato de las partes procesales (Ley N° 29733 de Protección de Datos Personales).</p>
         `;
       } else if (topic === 'contactanos') {
         title.innerText = "Atención al Ciudadano y Mesas de Partes";
         body.innerHTML = `
           <p style="margin-bottom: 6px;"><strong>Sede Central Puno:</strong> Plaza de Armas S/N, Cercado de Puno.</p>
-          <p style="margin-bottom: 6px;"><strong>Mesa de Partes Electrónica (SINOE):</strong> Disponible las 24 horas del día.</p>
-          <p><strong>Central Telefónica Directa:</strong> (051) 507000 / Correo: atencionpuno@pj.gob.pe</p>
+          <p style="margin-bottom: 6px;"><strong>Mesa de Partes Electrónica (SINOE):</strong> Plataforma habilitada 24/7.</p>
+          <p><strong>Central Telefónica:</strong> (051) 507000 / Correo: atencionpuno@pj.gob.pe</p>
         `;
       } else if (topic === 'instructivo') {
-        title.innerText = "📖 INSTRUCTIVO DE NAVEGACIÓN Y USO DEL PORTAL";
+        title.innerText = "📖 INSTRUCTIVO DE NAVEGACIÓN ACCESIBLE";
         body.innerHTML = `
           <div style="line-height:1.7;">
-            <p><strong>1. Búsqueda de Causas:</strong> Valide la casilla "No soy un robot" y el código CAPTCHA en pantalla. Puede presionar la tecla Enter para ingresar.</p>
-            <p><strong>2. Lector Inclusivo TalkBack:</strong> Active la lectura por voz con el botón 🔊 o mediante la combinación de teclas <strong>Alt + A</strong>.</p>
-            <p><strong>3. Visualización y Descarga:</strong> Seleccione cualquier fila para desplegar directamente el documento PDF alojado en GitHub.</p>
-            <div style="margin-top: 14px; text-align: center;">
-              <a href="https://www.youtube.com" target="_blank" style="background: #dc2626; color: white; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; display: inline-flex; align-items: center; gap: 6px; font-size: 11px;">
-                ▶️ Ver Video Tutorial Interactivo en YouTube
-              </a>
-            </div>
+            <p><strong>1. Identidad Segura:</strong> Complete el filtro humano antes de acceder al portal.</p>
+            <p><strong>2. Inclusión:</strong> Habilite la lectura automática presionando el botón de TalkBack o las teclas <strong>Alt + A</strong> (Conforme Art. 24 - Ley 1412).</p>
+            <p><strong>3. Documentos:</strong> Un solo clic en cualquier fila o ítem de la línea de tiempo abrirá el documento PDF directamente en la pantalla, <strong>sin descargarlo</strong> a su dispositivo.</p>
           </div>
         `;
       }
       openModal('modal-info-view');
     }
 
-    // SIMULADOR DE INTEROPERABILIDAD ABIERTO
+    // SIMULADOR PIDE CON FOTOGRAFÍAS REALISTAS Y PROTEGIDAS
+    const imgMen = ['hombre 4.webp', 'hombre2.avif', 'hombre 1.webp'];
+    const imgWomen = ['mujer3.avif', 'mujer2.webp', 'mujer 1.avif'];
     let isMaleGenderToggle = true;
+
     function triggerDynamicInterop(type) {
       const customSearch = document.getElementById('interop-custom-input').value.trim();
       let personName = customSearch ? customSearch.toUpperCase() : "HU*** DU*** AL*** AY***";
@@ -1648,7 +1585,7 @@
         personName = parts.map(p => p.length > 2 ? p.substring(0,2) + '***' : p).join(' ');
       }
 
-      const randomDni = "4512****";
+      const randomDni = "4512" + Math.floor(1000 + Math.random() * 9000).toString().substring(0,2) + "**";
 
       const heading = document.getElementById('gen-interop-heading');
       const person = document.getElementById('gen-interop-person');
@@ -1656,71 +1593,54 @@
       const details = document.getElementById('gen-interop-details');
       const avatarFrame = document.getElementById('interop-avatar-frame');
 
-      isMaleGenderToggle = !isMaleGenderToggle;
+      isMaleGenderToggle = !isMaleGenderToggle; // Alternar género para variedad en la simulación
+      let selectedImage = "";
+      
       if (isMaleGenderToggle) {
+        selectedImage = imgMen[Math.floor(Math.random() * imgMen.length)];
         avatarFrame.innerHTML = `
-          <svg style="width: 55px; height: 55px; color: #0284c7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
-          <span style="font-size: 8px; color: #0284c7; font-weight: bold; margin-top: 4px;">VARÓN</span>
-          <div style="position: absolute; bottom: 0; width: 100%; background: #0284c7; color: white; font-size: 8px; text-align: center; padding: 1px;">VERIFICADO</div>
+          <img src="${selectedImage}" class="pide-photo" alt="Rostro Varón PIDE">
+          <div style="position: absolute; bottom: 0; width: 100%; background: rgba(2, 132, 199, 0.9); color: white; font-size: 9px; text-align: center; padding: 2px; font-weight: bold;">VARÓN - VALIDADO</div>
         `;
       } else {
+        selectedImage = imgWomen[Math.floor(Math.random() * imgWomen.length)];
         avatarFrame.innerHTML = `
-          <svg style="width: 55px; height: 55px; color: #be185d;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            <path d="M12 11c-2 0-3 1-3 3"/>
-          </svg>
-          <span style="font-size: 8px; color: #be185d; font-weight: bold; margin-top: 4px;">MUJER</span>
-          <div style="position: absolute; bottom: 0; width: 100%; background: #be185d; color: white; font-size: 8px; text-align: center; padding: 1px;">VERIFICADO</div>
+          <img src="${selectedImage}" class="pide-photo" alt="Rostro Mujer PIDE">
+          <div style="position: absolute; bottom: 0; width: 100%; background: rgba(190, 24, 93, 0.9); color: white; font-size: 9px; text-align: center; padding: 2px; font-weight: bold;">MUJER - VALIDADA</div>
         `;
       }
 
       person.innerText = personName;
       num.innerText = "DNI " + randomDni;
 
-      if (type.includes('RENIEC')) {
-        heading.innerText = "RENIEC - CONSULTA REGISTRAL PISDP";
-        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno - Puno)<br>Censura Técnica: Ley N° 29733 aplicada.";
+      if (type === 'RENIEC') {
+        heading.innerText = "PIDE - RENIEC";
+        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno)<br>Nota: Imagen tratada bajo la Ley N° 29733.";
       } else if (type === 'MIGRACIONES') {
-        heading.innerText = "MIGRACIONES - CONTROL TRANSFRONTERIZO";
-        details.innerHTML = "Alertas Migratorias: <strong>NINGUNA ALERTA REGISTRADA</strong><br>Estado de Pasaporte: VÁLIDO Y VIGENTE.";
+        heading.innerText = "PIDE - MIGRACIONES";
+        details.innerHTML = "Alertas Migratorias: <strong>NINGUNA ALERTA VIGENTE</strong><br>Pasaporte Biométrico: ACTIVO.";
       } else if (type === 'PNP') {
-        heading.innerText = "PNP - REQUISITORIAS ESINPOL";
-        details.innerHTML = "Orden de Captura / Requisitorias: <strong style='color:#059669;'>NO REGISTRA REQUISITORIA VIGENTE</strong>.";
+        heading.innerText = "PIDE - POLICÍA NACIONAL DEL PERÚ";
+        details.innerHTML = "Requisitorias ESINPOL: <strong style='color:#059669;'>NEGATIVO</strong> para captura técnica.";
       } else if (type === 'INPE') {
-        heading.innerText = "INPE - ANTECEDENTES PENALES";
-        details.innerHTML = "Registro Penitenciario: <strong style='color:#059669;'>SIN ANTECEDENTES RECLUSORIOS</strong>.";
+        heading.innerText = "PIDE - INPE";
+        details.innerHTML = "Antecedentes Reclusorios: <strong style='color:#059669;'>SIN REGISTROS PENITENCIARIOS</strong>.";
       }
       openModal('modal-generic-interop');
     }
 
-    // VISOR PDF CON LECTURA DIRECTA DE GITHUB (EMBED/IFRAME)
-    let currentActiveAct = null;
-
+    // VISOR PDF CON LECTURA EN LÍNEA DIRECTA (IFRAME) - CERO DESCARGAS AUTOMÁTICAS
     function openPdfDocument(num) {
       const act = ACTUADOS.find(a => a.n === num);
       if (!act) return;
-      currentActiveAct = act;
       
       document.getElementById('pdf-doc-name').innerText = act.title;
       const paper = document.getElementById('pdf-doc-paper');
       
-      // En lugar de simular con HTML, se incrusta el documento PDF real del repositorio
-      paper.innerHTML = `<embed src="${act.url}" type="application/pdf" width="100%" height="100%" style="border:none;">`;
+      // Inyección del iFrame/Embed (No descarga el documento, lo muestra en navegador)
+      paper.innerHTML = `<iframe src="${act.url}" width="100%" height="100%" style="border:none;"></iframe>`;
       
       openModal('modal-pdf-view');
-    }
-
-    function downloadSinglePdf(num) {
-      const target = num ? ACTUADOS.find(a => a.n === num) : currentActiveAct;
-      if (target && target.url) {
-        window.open(target.url, '_blank');
-      }
-    }
-
-    function downloadCompleteExpediente() {
-      alert("Para descargar todo el expediente, por favor acceda a cada documento individual desde la tabla y utilice la opción de descarga.");
     }
 
     // RENDERIZADO PANTALLA 5
@@ -1730,6 +1650,7 @@
       [ACTUADOS[0], ACTUADOS[2], ACTUADOS[4], ACTUADOS[6], ACTUADOS[7], ACTUADOS[8]].forEach(item => {
         const div = document.createElement('div');
         div.className = 'timeline-node';
+        // Un solo clic abre la visualización en línea
         div.onclick = () => openPdfDocument(item.n);
         div.innerHTML = `
           <div class="timeline-dot"></div>
@@ -1749,6 +1670,7 @@
       ACTUADOS.forEach(a => {
         const tr = document.createElement('tr');
         tr.className = 'clickable-row';
+        // Un solo clic en la fila abre la visualización en línea
         tr.onclick = (e) => {
           if (!e.target.closest('button')) openPdfDocument(a.n);
         };
@@ -1761,14 +1683,14 @@
             <div style="font-size:11px; color:#64748b;">${a.des}</div>
           </td>
           <td style="padding:7px; text-align:center; white-space:nowrap;">
-            <button onclick="downloadSinglePdf(${a.n})" class="btn-row-action btn-download-pdf">📥 Descargar PDF</button>
+            <button onclick="openPdfDocument(${a.n}); event.stopPropagation();" class="btn-row-action btn-view-pdf">👁️ Visualizar Doc</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // CHATBOT IURISNIANO
+    // CHATBOT IURISNIANO (SOLO AYUDA ÚTIL Y PRIVACIDAD)
     function openAndHidePromptChat() {
       document.getElementById('chat-prompt-bubble').style.display = 'none';
       toggleChatbotWindow();
@@ -1799,7 +1721,7 @@
       input.value = "";
       log.scrollTop = log.scrollHeight;
 
-      // Animación de tres puntos mientras responde
+      // Animación de carga
       const typingMsg = document.createElement('div');
       typingMsg.id = "bot-typing-temp";
       typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:14px; padding:6px 10px; max-width:85%; align-self:flex-start;";
@@ -1813,20 +1735,16 @@
       log.appendChild(typingMsg);
       log.scrollTop = log.scrollHeight;
 
-      // Procesamiento de respuestas actualizadas para el Caso Almanza
+      // Respuestas útiles centradas en el caso
       const q = val.toLowerCase();
-      let resp = "Con gusto respondo tu inquietud. Como **IURISNIANO**, puedo orientarte sobre la **Ley N° 27444**, el **D. Leg. N° 1412 (Gobierno Digital)**, la **Ley N° 29733** o el estado del caso.";
+      let resp = "Para garantizar la seguridad, mi asistencia se enfoca en resúmenes del caso, identificar las partes (de manera anónima) y orientarte sobre los conceptos legales vinculados a este expediente.";
 
-      if (q.includes("27444") || q.includes("principios") || q.includes("1412") || q.includes("garantias")) {
-        resp = `📜 **CUMPLIMIENTO NORMATIVO DIGITAL:**<br><br>
-        • **Ley N° 27444:** Garantiza el debido procedimiento, impulso de oficio, verdad material, celeridad y eficacia en cada acto procesal conducido por medios digitales.<br><br>
-        • **D. Leg. N° 1412 (Gobierno Digital):** Fundamenta la autenticidad del Expediente Judicial Electrónico (EJE), el uso de la firma digital con valor legal y la interoperabilidad entre entidades del Estado.`;
-      } else if (q.includes("resumen")) {
-        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Desnaturalización de Contrato CAS.<br>• **Partes:** Hugo Durán Almanza Aycaya vs Municipalidad Provincial de Chucuito.<br>• **Juzgado:** 1° Juzgado de Trabajo Transitorio (Puno).<br>• **Estado Actual:** **Con Sentencia de 1ra Instancia**.";
-      } else if (q.includes("etapa") || q.includes("sentencia")) {
-        resp = "🎯 **ETAPA DE JUZGAMIENTO ANTICIPADO:** La causa se encuentra con Resolución N° 02 donde el Juez ha emitido sentencia resolviendo sobre la desnaturalización del contrato CAS del trabajador (operario municipal).";
-      } else if (q.includes("29733") || q.includes("datos") || q.includes("privacidad")) {
-        resp = "🔒 **LEY N° 29733 (PROTECCIÓN DE DATOS):** Aplica la censura (*blackout*) automatizada en nombres y documentos de identidad dentro de los visores públicos para salvaguardar la intimidad de las partes procesales.";
+      if (q.includes("resumen") || q.includes("trata")) {
+        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Invalidez jurídica de Contrato CAS (Desnaturalización).<br>• **Partes:** Trabajador Hu*** Du*** Al*** vs Municipio de Chucuito.<br>• **Cargo:** Operario / Custodio.<br>• El demandante busca que su vínculo laboral sea reconocido a plazo indeterminado bajo el régimen de la actividad privada.";
+      } else if (q.includes("etapa") || q.includes("estado") || q.includes("encuentra")) {
+        resp = "🎯 **ESTADO PROCESAL:** Actualmente, la causa se encuentra tras la **Audiencia de Juzgamiento Anticipado**. El Juez emitió la Sentencia correspondiente (Resolución N° 02), la cual ya fue notificada a las partes de forma electrónica.";
+      } else if (q.includes("desnaturalización") || q.includes("concepto") || q.includes("significa")) {
+        resp = "💡 **CONCEPTO LEGAL:** La *desnaturalización del contrato* ocurre cuando en la realidad se realizan labores continuas, subordinadas y propias de un puesto permanente (como un obrero), invalidando los contratos temporales o especiales que encubrían esa relación.";
       }
 
       setTimeout(() => {
@@ -1841,7 +1759,7 @@
       }, 850);
     }
 
-    // MULTI-IDIOMA TOTAL
+    // MULTI-IDIOMA
     var currentLang = 'es';
     var DICTIONARY = {
       es: { appTitle: "PORTAL ELECTRÓNICO JUDICIAL", home: "Inicio", mision: "Misión", vision: "Visión", transp: "Transparencia", contact: "Contáctanos", inst: "📖 Instructivo", searchBtn: "🔍 Búsqueda de Expediente", exitBtn: "🚪 Salir" },
@@ -1874,7 +1792,7 @@
     setInterval(() => {
       sessionTimeLeft--;
       if (sessionTimeLeft <= 0) {
-        alert("Su sesión ha finalizado por seguridad judicial.");
+        alert("Su sesión ha finalizado por seguridad de la Sede Digital.");
         exitToHome();
       }
       const m = Math.floor(sessionTimeLeft / 60);
