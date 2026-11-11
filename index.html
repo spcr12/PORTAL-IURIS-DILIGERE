@@ -513,7 +513,7 @@
     }
     @keyframes popSheet { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-    /* VISOR PDF CON CENSURA EN NEGRO (BLACKOUT) Y VISUALIZACIÓN DIRECTA (SIN DESCARGA FORZADA) */
+    /* VISOR PDF DIRECTO (IFRAME) */
     .pdf-bar {
       background: #334155;
       color: white;
@@ -526,20 +526,14 @@
       top: 0;
       z-index: 10;
     }
-    .pdf-viewer-container {
-      width: 100%;
+    .pdf-paper {
+      background: #f1f5f9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      margin: 0 auto;
+      max-width: 100%;
       height: 75vh;
-      background: #525659;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .pdf-viewer-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #ffffff;
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
     }
 
     /* BURBUJAS FLOTANTES INFERIORES DE NOTIFICACIÓN */
@@ -625,6 +619,7 @@
       50% { transform: translateY(-6px); }
     }
 
+    /* Efecto Glow Pulse para Iurisniano */
     #chatbot-bubble {
       background: linear-gradient(135deg, #750e2e, #be185d, #e11d48);
       background-size: 200% 200%;
@@ -690,6 +685,7 @@
       to { transform: scale(1) translateY(0); opacity: 1; }
     }
 
+    /* Animación de tres puntos pulsantes */
     .typing-indicator {
       display: inline-flex;
       align-items: center;
@@ -748,14 +744,14 @@
   <div id="academic-left-notice">
     <button class="close-notice-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
     <div style="font-weight: 800; color: #750e2e; margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
-    <div>Prototipo simulado universitario (Expediente N° 00170-2023-0-2101-JR-LA-01, Ley N° 27444 / Ley N° 29733).</div>
+    <div>Prototipo simulado universitario (D. Leg. N° 1412, Ley N° 27444 / Ley N° 29733 de Datos Personales).</div>
   </div>
 
-  <!-- BURBUJA FLOTANTE DE CIUDADANO DIGITAL -->
+  <!-- BURBUJA FLOTANTE DE CIUDADANO DIGITAL (SEPARADA DE LA PORTADA) -->
   <div id="citizen-digital-notice">
     <button class="close-notice-btn" onclick="document.getElementById('citizen-digital-notice').style.display='none'" style="color: #15803d;">✕</button>
     <div style="font-weight: 800; color: #15803d; margin-bottom: 2px;">🌱 ¡Conviértete en un Ciudadano Digital!</div>
-    <div>Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente y evita trámites presenciales en papel.</div>
+    <div>Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.</div>
   </div>
 
   <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS -->
@@ -908,7 +904,7 @@
           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
         <h3 id="p1-loader-title" style="font-size: 15px; font-weight: 700; color: #3f0314;">Estableciendo Conexión Cifrada</h3>
-        <p id="p1-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Accediendo a la Sede Anexa Puno - CSJ Puno...</p>
+        <p id="p1-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Accediendo a la Sede Central Puno - CSJ Puno...</p>
         <div style="font-weight: 800; font-size: 14px; color: var(--mag-vivid); margin-top: 14px;" id="p1-percentage">0%</div>
         <div style="background: #fce7f3; height: 8px; border-radius: 8px; overflow: hidden; margin-top: 6px;">
           <div id="p1-progress-bar" style="height: 100%; background: linear-gradient(90deg, #750e2e, #be185d); width: 0%; transition: width 0.1s linear;"></div>
@@ -982,17 +978,17 @@
               </div>
               <div>
                 <label style="font-weight: bold; color: #64748b;">Juzgado de Origen:</label>
-                <select style="width:100%; padding:7px; border-radius:6px; border:1px solid #cbd5e1;"><option>1° JUZGADO DE TRABAJO TRANSITORIO</option></select>
+                <select style="width:100%; padding:7px; border-radius:6px; border:1px solid #cbd5e1;"><option>1° JUZGADO DE TRABAJO TRANSITORIO - ZONA SUR</option></select>
               </div>
             </div>
             <div>
               <label style="font-weight: bold; color: #64748b;">Demandante o Demandado:</label>
-              <input type="text" id="input-party-name" value="Al*** Ay*** Hu*** Du***" style="width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
+              <input type="text" id="input-party-name" value="H. D. A. A." style="width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
             </div>
           </div>
 
           <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 16px;">
-            Expediente asignado: <strong style="color: #750e2e;">00170-2023-0-2101-JR-LA-01</strong> (Municipalidad Provincial de Chucuito vs Al*** Ay*** Hu*** Du***)
+            Expediente asignado: <strong style="color: #750e2e;">00170-2023-0-2101-JR-LA-01</strong> (H. D. A. A. vs M. P. C. - J.)
           </div>
 
           <button onclick="switchScreen(4)" class="btn-action-primary" id="p2-btn-submit">
@@ -1010,7 +1006,7 @@
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/>
         </svg>
         <h3 id="p4-loader-title" style="font-size: 15px; font-weight: 700; color: #3f0314;">Indexando Cuaderno Laboral Digital</h3>
-        <p id="p4-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Recuperando resoluciones, notificaciones y actuados del EJE...</p>
+        <p id="p4-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Recuperando resoluciones, anexos y actas de audiencias...</p>
         <div style="font-weight: 800; font-size: 14px; color: var(--mag-primary); margin-top: 14px;" id="p4-percentage">0%</div>
         <div style="background: #fce7f3; height: 8px; border-radius: 8px; overflow: hidden; margin-top: 6px;">
           <div id="p4-progress-bar" style="height: 100%; background: linear-gradient(90deg, #750e2e, #be185d); width: 0%; transition: width 0.1s linear;"></div>
@@ -1032,10 +1028,10 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 12px;">
               <div><span style="color: #64748b; display: block;" id="lbl-dist">Distrito Judicial / Sede:</span> <strong>Puno / Sede Anexa Puno</strong></div>
               <div><span style="color: #64748b; display: block;" id="lbl-court">Juzgado:</span> <strong>1° Juzgado de Trabajo Transitorio - Zona Sur</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-judge">Juez a Cargo:</span> <strong>Borges Rivero, Alfonso / Ramos Chahuares, Kelly Y.</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-sec">Especialista Legal:</span> <strong>Poma Yupanqui, Nancy</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-matter">Materia / Vía:</span> <strong style="color: #750e2e;">Derechos Laborales / Proceso Ordinario (NLPT Ley 29497)</strong></div>
-              <div><span style="color: #64748b; display: block;">Estado Actual:</span> <strong style="color: #059669;">SENTENCIA EMITIDA (Favorable al Trabajador)</strong></div>
+              <div><span style="color: #64748b; display: block;" id="lbl-judge">Juez a Cargo:</span> <strong>Dra. K. Y. R. C. / Dr. A. B. R.</strong></div>
+              <div><span style="color: #64748b; display: block;" id="lbl-sec">Secretaria Judicial:</span> <strong>Abog. N. V. M.</strong></div>
+              <div><span style="color: #64748b; display: block;" id="lbl-matter">Materia / Vía:</span> <strong style="color: #750e2e;">Derechos Laborales / Proceso Ordinario (Ley 29497)</strong></div>
+              <div><span style="color: #64748b; display: block;">Estado Actual:</span> <strong style="color: #059669;">ETAPA DE JUZGAMIENTO (Sentencia)</strong></div>
             </div>
           </div>
         </div>
@@ -1054,9 +1050,9 @@
             </div>
             <div class="stepper-bar">
               <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>1. Postulatoria</strong></div>
-              <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>2. Conciliación</strong></div>
-              <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>3. Juzgamiento</strong></div>
-              <div class="stepper-step"><div class="stepper-circle stepper-active">✓</div><strong style="color: #be185d;">4. Sentencia</strong></div>
+              <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>2. Probatoria (Concil.)</strong></div>
+              <div class="stepper-step"><div class="stepper-circle stepper-active">3</div><strong style="color: #be185d;">3. Decisoria (Juzgam.)</strong></div>
+              <div class="stepper-step"><div class="stepper-circle" style="background:#cbd5e1; color:white;">4</div><strong style="color: #64748b;">4. Ejecución</strong></div>
             </div>
             <div class="timeline-wrapper" id="timeline-flow-box"></div>
           </div>
@@ -1071,13 +1067,13 @@
           <div id="acc-sec-3" class="accordion-content">
             
             <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
-              <div style="font-weight: bold; font-size: 13px; color: #750e2e;">DEMANDANTE: Al*** Ay*** Hu*** Du*** (DNI 7483****)</div>
-              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Abog. Raul Arcos Cotrado (Reg. CAP 1975) | Casilla SINOE: 2602</div>
+              <div style="font-weight: bold; font-size: 13px; color: #750e2e;">DEMANDANTE: H. D. A. A. (DNI 7483****)</div>
+              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Abog. R. A. C. (Reg. CAP 1976) / Abog. R. L. A. M. (Reg. CAP 5627) | Casilla SINOE: 2602</div>
             </div>
 
             <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
-              <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Municipalidad Provincial de Chucuito - Juli (RUC 20161244512)</div>
-              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Procurador Público: Abog. Ne*** Hu*** Ch*** Fu*** (DNI 4087****) | Casilla: 71295</div>
+              <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Municipalidad Provincial de Chucuito - Juli (RUC 2016****)</div>
+              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Procurador Público: Abog. N. H. C. F. (Reg. CAP 5253) | Casilla: 71295</div>
             </div>
 
             <!-- BÚSQUEDA ABIERTA CON ENTER -->
@@ -1207,7 +1203,7 @@
         </div>
 
         <div style="flex-grow: 1; font-size: 11px; line-height: 1.7;">
-          <div><span style="color: #64748b;">Titular Consultado:</span> <strong id="gen-interop-person">Al*** Ay*** Hu*** Du***</strong></div>
+          <div><span style="color: #64748b;">Titular Consultado:</span> <strong id="gen-interop-person">H. D. A. A.</strong></div>
           <div><span style="color: #64748b;">Documento Identidad:</span> <strong id="gen-interop-number">DNI 7483****</strong></div>
           <div style="margin-top: 6px; background: white; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" id="gen-interop-details">
             Sin observaciones vigentes.
@@ -1217,19 +1213,18 @@
     </div>
   </div>
 
-  <!-- MODAL: VISOR DE DOCUMENTOS PDF (SOLO VISUALIZACIÓN DIRECTA, DESCARGA OPCIONAL) -->
+  <!-- MODAL: VISOR DE RESOLUCIONES CON IFRAME INCORPORADO -->
   <div id="modal-pdf-view" class="modal-overlay">
-    <div class="modal-sheet" style="max-width: 900px; background: #334155;">
+    <div class="modal-sheet" style="max-width: 900px; width: 95%; padding: 0;">
       <div class="pdf-bar">
-        <span id="pdf-doc-title-bar">Documento.pdf</span>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <a id="pdf-download-link" href="#" target="_blank" download class="btn-row-action btn-download-pdf" style="background:#0284c7; text-decoration:none;">💾 Descargar Archivo</a>
-          <button onclick="closeModal('modal-pdf-view')" style="background: #ef4444; border: none; color: white; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">✕ Cerrar</button>
+        <span id="pdf-doc-name">Documento_Judicial.pdf</span>
+        <div style="display: flex; gap: 6px; align-items: center;">
+          <button onclick="downloadSinglePdf()" style="background: #475569; border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">💾 Descargar Archivo</button>
+          <button onclick="closeModal('modal-pdf-view')" style="background: #ef4444; border: none; color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">✕ Cerrar Visor</button>
         </div>
       </div>
-      <div class="pdf-viewer-container">
-        <iframe id="pdf-viewer-iframe" class="pdf-viewer-iframe" src=""></iframe>
-      </div>
+      <!-- Contenedor del Iframe de visualización de PDF en línea -->
+      <div class="pdf-paper" id="pdf-doc-paper"></div>
     </div>
   </div>
 
@@ -1278,15 +1273,15 @@
 
     <!-- BOTONES DE NAVEGACIÓN RÁPIDA -->
     <div style="display: flex; gap: 6px; padding: 8px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
-      <button onclick="quickAskBot('¿Cuáles son las garantías de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">⚖️ Ley 27444 / DL 1412</button>
+      <button onclick="quickAskBot('¿Cuáles son las garantías de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold; transition: background 0.2s;">⚖️ Ley 27444 / DL 1412</button>
       <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen Caso</button>
-      <button onclick="quickAskBot('¿En qué estado está la sentencia?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Sentencia Favorable</button>
+      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Sentencia</button>
       <button onclick="quickAskBot('¿Qué exige la Ley de Protección de Datos Personales 29733?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🔒 Ley N° 29733</button>
     </div>
 
     <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
       <div style="background: #ffffff; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--mag-border); max-width: 88%; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu guía interactivo. Estoy listo para ayudarte con consultas de la **Ley N° 27444**, el **D. Leg. N° 1412 de Gobierno Digital**, la **Ley N° 29733** y los detalles del expediente judicial laboral (Almanza vs. Municipalidad Provincial de Chucuito).
+        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu guía interactivo. Estoy listo para ayudarte con consultas de la **Ley N° 27444**, el **D. Leg. N° 1412 de Gobierno Digital**, la **Ley N° 29733** y los detalles del expediente judicial actual.
       </div>
     </div>
 
@@ -1342,9 +1337,9 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT CON VISOR INTEGRADO Y ENLACES DIRECTOS DE GITHUB -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA CON ENTER, MULTI-IDIOMA Y SCRIPT DEL CHATBOT -->
   <script>
-    // CARGAPANTALLA INICIAL
+    // CARGA PANTALLA INICIAL
     window.addEventListener('DOMContentLoaded', () => {
       const splashOverlay = document.getElementById('full-page-splash');
       const progressBar = document.getElementById('splash-progress-bar');
@@ -1367,43 +1362,43 @@
       requestAnimationFrame(animateProgress);
     });
 
-    // BASE DE DATOS DEL EXPEDIENTE CON LOS LINKS DIRECTOS DE GITHUB PROPORCIONADOS
+    // BASE DE DATOS DEL NUEVO EXPEDIENTE CON URLS DIRECTOS DEL REPOSITORIO
     var ACTUADOS = [
       {
-        n: 1, f: "Fjs. 1-3", d: "09/02/2023", t: "Actuado N° 01: Cargo de Presentación de Demanda", des: "Mesa de Partes Electrónica - CDG N° 00170-2023 (Almanza vs. MP Chucuito).",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/_Demanda.pdf"
+        n: 1, f: "Fjs. 1-66", d: "09/02/2023", t: "Actuado N° 01: Demanda Laboral Ordinaria y Anexos", des: "Mesa de Partes Electrónica - Expediente N° 00170-2023.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/1Demanda.pdf"
       },
       {
-        n: 2, f: "Fjs. 4-17", d: "09/02/2023", t: "Actuado N° 02: Escrito de Demanda Laboral y Anexos", des: "Demanda de desnaturalización de CAS a D.L. 728 y Reposición, con recaudos y DNI.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/NOTIFICACION.pdf"
+        n: 2, f: "Fjs. 75", d: "07/03/2023", t: "Actuado N° 02: Cédula de Notificación N° 3789-2023", des: "Notificación de la Resolución N° 01 (Admisorio) al demandante.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/2NOTIFICACION.pdf"
       },
       {
-        n: 3, f: "Fjs. 18-25", d: "01/10/2020", t: "Actuado N° 03: Contrato CAS N° 0143-2020 y Adendas", des: "Contrato Administrativo de Servicios primigenio y adendas sucesivas (Operador en Custodio).",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/RESOLUCION%201_.pdf"
+        n: 3, f: "Fjs. 71-74", d: "06/03/2023", t: "Actuado N° 03: Resolución N° 01 (Auto Admisorio)", des: "Admite a trámite la demanda y cita a Audiencia de Conciliación.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/3RESOLUCION1.pdf"
       },
       {
-        n: 4, f: "Fjs. 26-68", d: "10/02/2023", t: "Actuado N° 04: Boletas de Pago y Certificado de Trabajo", des: "Boletas de remuneración (octubre 2020 a diciembre 2022) y Certificado de Trabajo.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/APERSONAMIENTO%20_.pdf"
+        n: 4, f: "Fjs. 77-92", d: "24/04/2023", t: "Actuado N° 04: Contestación de Demanda", des: "Apersonamiento y absolución de demanda por la entidad demandada.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/4ABSOLUCION.pdf"
       },
       {
-        n: 5, f: "Fjs. 71-76", d: "07/03/2023", t: "Actuado N° 05: Resolución N° 01 (Auto Admisorio)", des: "1° Juzgado de Trabajo Transitorio admite a trámite la demanda en la vía Ordinaria Laboral.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/AUDIENCIA%20DE%20CONCILIACI%C3%93N_.pdf"
+        n: 5, f: "Fjs. 99-103", d: "02/05/2023", t: "Actuado N° 05: Acta de Audiencia de Conciliación", des: "Audiencia de conciliación conjunta y decisión de juzgamiento anticipado.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/5AUDIENCIA%20DE%20CONCILIACI%C3%93N.pdf"
       },
       {
-        n: 6, f: "Fjs. 77-96", d: "24/04/2023", t: "Actuado N° 06: Contestación de Demanda y Excepción", des: "Procurador Público de la Municipalidad Provincial de Chucuito contesta y deduce excepción.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/NOTIFICACION_.pdf"
+        n: 6, f: "Fjs. 104-105", d: "05/05/2023", t: "Actuado N° 06: Cédula de Notificación N° 10646-2023", des: "Notificación de la Resolución N° 02 referida al Juzgamiento Anticipado.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/6NOTIFICACION.pdf"
       },
       {
-        n: 7, f: "Fjs. 97-99", d: "26/01/2023", t: "Actuado N° 07: Resolución de Gerencia N° 028-2023", des: "Declara la nulidad de oficio de la adenda indeterminada de la gestión anterior.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/AUDIENCIA%20DE%20JUZGAMIENTO%20_.pdf"
+        n: 7, f: "Fjs. 106-107", d: "12/07/2023", t: "Actuado N° 07: Acta de Audiencia de Juzgamiento", des: "Confrontación de posiciones, alegatos finales y reserva del fallo.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/7AUDIENCIA%20DE%20JUZGAMIENTO.pdf"
       },
       {
-        n: 8, f: "Fjs. 100-105", d: "04/05/2023", t: "Actuado N° 08: Acta de Audiencia de Conciliación", des: "Comparecencia de partes, frustración de acuerdo conciliatorio y fijación de juzgamiento anticipado.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/RESOLUCION%202_.pdf"
+        n: 8, f: "Fjs. 108-115", d: "19/07/2023", t: "Actuado N° 08: Resolución N° 02 (Sentencia N° 036-2023-JLP)", des: "Sentencia de Juzgamiento Anticipado que resuelve el fondo de la controversia.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/8RESOLUCION2.pdf"
       },
       {
-        n: 9, f: "Fjs. 109-122", d: "19/07/2023", t: "Actuado N° 09: Sentencia N° 036-2023-JLP (Fallo Favorable)", des: "Declara FUNDADA la demanda: Reconoce condición de obrero municipal, invalidez de CAS y ordena reposición.",
-        url: "https://raw.githubusercontent.com/spcr12/EXPDIGITAL/55850ff775d3eed6b81b1fa540d99d1282943940/_NOTIFICACION_.pdf"
+        n: 9, f: "Fjs. 116", d: "19/07/2023", t: "Actuado N° 09: Cédula de Notificación SINOE", des: "Notificación electrónica de la Sentencia a las casillas SINOE.",
+        url: "https://raw.githubusercontent.com/spcr12/PORTAL-IURIS-DILIGERE/4daa15432d246aedfe27c43fd388678f73bdd5a5/9NOTIFICACION.pdf"
       }
     ];
 
@@ -1609,9 +1604,9 @@
       } else if (topic === 'contactanos') {
         title.innerText = "Atención al Ciudadano y Mesas de Partes";
         body.innerHTML = `
-          <p style="margin-bottom: 6px;"><strong>Sede Anexa Puno:</strong> Jr. Cusco N° 232 - Cercado (NLPT).</p>
+          <p style="margin-bottom: 6px;"><strong>Sede Central Puno:</strong> Jr. Cusco N° 232 (Sede Anexa NLPT), Puno.</p>
           <p style="margin-bottom: 6px;"><strong>Mesa de Partes Electrónica (SINOE):</strong> Disponible las 24 horas del día.</p>
-          <p><strong>Central Telefónica Directa:</strong> (051) 364860 / Correo: atencionpuno@pj.gob.pe</p>
+          <p><strong>Central Telefónica Directa:</strong> (051) 507000 / Correo: atencionpuno@pj.gob.pe</p>
         `;
       } else if (topic === 'instructivo') {
         title.innerText = "📖 INSTRUCTIVO DE NAVEGACIÓN Y USO DEL PORTAL";
@@ -1619,7 +1614,7 @@
           <div style="line-height:1.7;">
             <p><strong>1. Búsqueda de Causas:</strong> Valide la casilla "No soy un robot" y el código CAPTCHA en pantalla. Puede presionar la tecla Enter para ingresar.</p>
             <p><strong>2. Lector Inclusivo TalkBack:</strong> Active la lectura por voz con el botón 🔊 o mediante la combinación de teclas <strong>Alt + A</strong>.</p>
-            <p><strong>3. Visualización de Documentos:</strong> Haga clic en cualquier actuado de la tabla o línea de tiempo para abrirlo directamente en el visor web sin descarga obligatoria.</p>
+            <p><strong>3. Visualización y Descarga:</strong> Seleccione cualquier fila o nodo de la línea de tiempo para desplegar la resolución de manera directa. Si lo desea, utilice el botón Descargar.</p>
             <div style="margin-top: 14px; text-align: center;">
               <a href="https://www.youtube.com" target="_blank" style="background: #dc2626; color: white; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; display: inline-flex; align-items: center; gap: 6px; font-size: 11px;">
                 ▶️ Ver Video Tutorial Interactivo en YouTube
@@ -1635,14 +1630,9 @@
     let isMaleGenderToggle = true;
     function triggerDynamicInterop(type) {
       const customSearch = document.getElementById('interop-custom-input').value.trim();
-      let personName = customSearch ? customSearch.toUpperCase() : "AL*** AY*** HU*** DU***";
+      let personName = customSearch ? customSearch.toUpperCase() : "H. D. A. A.";
       
-      const parts = personName.split(' ');
-      if (parts.length >= 2) {
-        personName = parts.map(p => p.length > 2 ? p.substring(0,2) + '***' : p).join(' ');
-      }
-
-      const randomDni = "7483" + Math.floor(1000 + Math.random() * 9000);
+      const randomDni = "7483" + Math.floor(1000 + Math.random() * 9000).toString().substring(0,4);
 
       const heading = document.getElementById('gen-interop-heading');
       const person = document.getElementById('gen-interop-person');
@@ -1675,7 +1665,7 @@
 
       if (type.includes('RENIEC')) {
         heading.innerText = "RENIEC - CONSULTA REGISTRAL PISDP";
-        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno - Juli)<br>Censura Técnica: Ley N° 29733 aplicada.";
+        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno - Puno)<br>Censura Técnica: Ley N° 29733 aplicada.";
       } else if (type === 'MIGRACIONES') {
         heading.innerText = "MIGRACIONES - CONTROL TRANSFRONTERIZO";
         details.innerHTML = "Alertas Migratorias: <strong>NINGUNA ALERTA REGISTRADA</strong><br>Estado de Pasaporte: VÁLIDO Y VIGENTE.";
@@ -1689,7 +1679,7 @@
       openModal('modal-generic-interop');
     }
 
-    // VISOR WEB INTEGRADO (ABRE PDF EN IFRAME SIN FORZAR DESCARGA AL HACER CLIC)
+    // VISOR DE PDF INCORPORADO VÍA IFRAME DE GOOGLE DOCS (SIN DESCARGA AUTOMÁTICA)
     let currentActiveAct = null;
 
     function openPdfDocument(num) {
@@ -1697,27 +1687,38 @@
       if (!act) return;
       currentActiveAct = act;
       
-      document.getElementById('pdf-doc-title-bar').innerText = `${act.t}.pdf`;
-      document.getElementById('pdf-viewer-iframe').src = act.url;
-      document.getElementById('pdf-download-link').href = act.url;
+      document.getElementById('pdf-doc-name').innerText = `${act.t.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      const paper = document.getElementById('pdf-doc-paper');
+      
+      const encodedUrl = encodeURIComponent(act.url);
+      paper.innerHTML = `<iframe src="https://docs.google.com/gview?url=${encodedUrl}&embedded=true" width="100%" height="100%" frameborder="0"></iframe>`;
       
       openModal('modal-pdf-view');
     }
 
-    function downloadCompleteExpediente() {
-      // Descarga el expediente principal o primera demanda como consolidado
+    // DESCARGA MANUAL DEL PDF (ABRIENDO EL ARCHIVO EN NUEVA PESTAÑA)
+    function downloadSinglePdf(num) {
+      const target = num ? ACTUADOS.find(a => a.n === num) : currentActiveAct;
+      if (!target) return;
+      
       const link = document.createElement('a');
-      link.href = ACTUADOS[0].url;
-      link.download = "Expediente_00170-2023_Almanza_Aycaya.pdf";
-      link.target = "_blank";
+      link.href = target.url;
+      link.target = "_blank"; // Abre en nueva pestaña para que el navegador decida (descargar/visualizar original)
+      link.download = target.t + ".pdf";
       link.click();
+    }
+
+    function downloadCompleteExpediente() {
+      alert("La descarga del expediente completo estará disponible próximamente.");
     }
 
     // RENDERIZADO PANTALLA 5
     function renderScreen5Content() {
       const tBox = document.getElementById('timeline-flow-box');
       tBox.innerHTML = '';
-      [ACTUADOS[0], ACTUADOS[1], ACTUADOS[4], ACTUADOS[7], ACTUADOS[8]].forEach(item => {
+      
+      // Mostrar solo algunos nodos en la línea de tiempo superior
+      [ACTUADOS[0], ACTUADOS[2], ACTUADOS[4], ACTUADOS[6], ACTUADOS[7]].forEach(item => {
         const div = document.createElement('div');
         div.className = 'timeline-node';
         div.onclick = () => openPdfDocument(item.n);
@@ -1734,13 +1735,14 @@
         tBox.appendChild(div);
       });
 
+      // Tabla de todos los actuados
       const tbody = document.getElementById('acts-table-body');
       tbody.innerHTML = '';
       ACTUADOS.forEach(a => {
         const tr = document.createElement('tr');
         tr.className = 'clickable-row';
         tr.onclick = (e) => {
-          if (!e.target.closest('button, a')) openPdfDocument(a.n);
+          if (!e.target.closest('button')) openPdfDocument(a.n);
         };
 
         tr.innerHTML = `
@@ -1752,8 +1754,7 @@
             <div style="font-size:11px; color:#64748b;">${a.des}</div>
           </td>
           <td style="padding:7px; text-align:center; white-space:nowrap;">
-            <button onclick="openPdfDocument(${a.n})" class="btn-row-action" style="background:#750e2e; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">👁️ Ver</button>
-            <a href="${a.url}" target="_blank" download class="btn-row-action btn-download-pdf" style="text-decoration:none;">📥 Descargar</a>
+            <button onclick="downloadSinglePdf(${a.n})" class="btn-row-action btn-download-pdf">📥 Descargar</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1783,6 +1784,7 @@
 
       const log = document.getElementById('chatbot-log');
 
+      // Mensaje enviado por el usuario
       const uMsg = document.createElement('div');
       uMsg.style = "background:linear-gradient(135deg, #750e2e, #be185d); color:white; padding:9px 13px; border-radius:14px; max-width:85%; align-self:flex-end; font-size:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);";
       uMsg.innerText = val;
@@ -1790,6 +1792,7 @@
       input.value = "";
       log.scrollTop = log.scrollHeight;
 
+      // Animación de tres puntos mientras responde
       const typingMsg = document.createElement('div');
       typingMsg.id = "bot-typing-temp";
       typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:14px; padding:6px 10px; max-width:85%; align-self:flex-start;";
@@ -1803,6 +1806,7 @@
       log.appendChild(typingMsg);
       log.scrollTop = log.scrollHeight;
 
+      // Procesamiento de respuestas
       const q = val.toLowerCase();
       let resp = "Con gusto respondo tu inquietud. Como **IURISNIANO**, puedo orientarte sobre la **Ley N° 27444**, el **D. Leg. N° 1412 (Gobierno Digital)**, la **Ley N° 29733** o el estado del caso.";
 
@@ -1811,9 +1815,9 @@
         • **Ley N° 27444:** Garantiza el debido procedimiento, impulso de oficio, verdad material, celeridad y eficacia en cada acto procesal conducido por medios digitales.<br><br>
         • **D. Leg. N° 1412 (Gobierno Digital):** Fundamenta la autenticidad del Expediente Judicial Electrónico (EJE), el uso de la firma digital con valor legal y la interoperabilidad entre entidades del Estado.`;
       } else if (q.includes("resumen")) {
-        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Desnaturalización de Contrato CAS a régimen D.L. 728.<br>• **Partes:** Hugo Durán Almanza Arcaya vs. Municipalidad Provincial de Chucuito - Juli.<br>• **Fallo:** Demanda Declarada FUNDADA en Sentencia N° 036-2023-JLP.";
-      } else if (q.includes("sentencia") || q.includes("favorable")) {
-        resp = "🎯 **SENTENCIA N° 036-2023-JLP:** El Juzgado Laboral determinó que las labores desempeñadas (Operador en Custodio) corresponden a la condición de obrero municipal, sujeto al régimen privado (D.L. 728). En consecuencia, declaró la invalidez de los contratos CAS y ordenó la reposición del demandante.";
+        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Derechos Laborales (Invalidez CAS, Reposición).<br>• **Partes:** H. D. A. A. vs M. P. C. - J.<br>• **Resolución:** Sentencia N° 036-2023-JLP que declara la condición de Obrero Municipal bajo D. Leg. 728.<br>• **Estado Actual:** **Etapa de Juzgamiento (Sentencia emitido mediante Juzgamiento Anticipado)**.";
+      } else if (q.includes("etapa") || q.includes("sentencia")) {
+        resp = "🎯 **ETAPA DE JUZGAMIENTO:** El Juzgado optó por el Juzgamiento Anticipado (Art. 43, Ley N° 29497). La causa concluyó con la Sentencia N° 036-2023-JLP, siendo notificada electrónicamente mediante la Cédula SINOE N° 10646.";
       } else if (q.includes("29733") || q.includes("datos") || q.includes("privacidad")) {
         resp = "🔒 **LEY N° 29733 (PROTECCIÓN DE DATOS):** Aplica la censura (*blackout*) automatizada en nombres y documentos de identidad dentro de los visores públicos para salvaguardar la intimidad de las partes procesales.";
       }
