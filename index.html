@@ -20,6 +20,30 @@
       --text-main: #0f172a;
       --text-muted: #64748b;
       --surface-white: #ffffff;
+      --bg-main: #faf5f8;
+    }
+
+    /* ACCESIBILIDAD: ALTO CONTRASTE (Art. 24 lit. b DL 1412) */
+    body.high-contrast {
+      --mag-darkest: #000000;
+      --mag-dark: #000000;
+      --mag-primary: #ffff00;
+      --mag-vivid: #ffff00;
+      --mag-light: #1a1a1a;
+      --mag-border: #ffffff;
+      --text-main: #ffffff;
+      --text-muted: #cccccc;
+      --surface-white: #000000;
+      --bg-main: #121212;
+    }
+
+    body.high-contrast .btn-action-primary {
+      background: #ffff00;
+      color: #000;
+    }
+
+    body.high-contrast .accordion-card {
+      border: 2px solid #fff;
     }
 
     * {
@@ -30,13 +54,14 @@
     }
 
     body {
-      background-color: #faf5f8;
+      background-color: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      transition: all 0.3s ease;
     }
 
     /* PANTALLA DE CARGA (SPLASH SCREEN) */
@@ -178,6 +203,7 @@
       background: rgba(0,0,0,0.35);
       padding: 2px;
       border-radius: 6px;
+      gap: 2px;
     }
     .lang-btn {
       background: transparent;
@@ -192,6 +218,9 @@
     .lang-btn.active {
       background: var(--mag-vivid);
       color: #ffffff;
+    }
+    .btn-contrast {
+      font-size: 12px;
     }
 
     .clock-live-badge {
@@ -346,7 +375,7 @@
 
     /* ACORDEONES DESPLEGABLES */
     .accordion-card {
-      background: white;
+      background: var(--surface-white);
       border: 1px solid var(--mag-border);
       border-radius: 16px;
       padding: 18px;
@@ -429,7 +458,7 @@
       box-shadow: 0 0 0 2px #be185d;
     }
     .timeline-card {
-      background: #fdf2f8;
+      background: var(--mag-light);
       border: 1px solid var(--mag-border);
       border-radius: 10px;
       padding: 12px 14px;
@@ -465,11 +494,11 @@
 
     /* TABLA DE ACTUADOS INTERACTIVA */
     .table-container { width: 100%; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 12px; background: white; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--surface-white); }
     th { background: var(--mag-dark); color: white; text-align: left; padding: 9px 8px; font-weight: 700; }
     td { padding: 9px 8px; border-bottom: 1px solid #fce7f3; }
     tr.clickable-row { cursor: pointer; transition: background 0.15s; }
-    tr.clickable-row:hover { background: #fdf2f8; }
+    tr.clickable-row:hover { background: var(--mag-light); }
 
     .btn-row-action {
       border: none;
@@ -501,7 +530,7 @@
     @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
 
     .modal-sheet {
-      background: #ffffff;
+      background: var(--surface-white);
       border-radius: 16px;
       max-width: 780px;
       width: 100%;
@@ -542,7 +571,7 @@
       bottom: 22px;
       left: 22px;
       z-index: 3000;
-      background: #ffffff;
+      background: var(--surface-white);
       border: 2px solid var(--mag-primary);
       border-radius: 14px;
       padding: 10px 14px;
@@ -552,23 +581,6 @@
       line-height: 1.4;
       color: var(--mag-dark);
       animation: floatLeftPrompt 4s ease-in-out infinite;
-    }
-
-    #citizen-digital-notice {
-      position: fixed;
-      bottom: 85px;
-      left: 22px;
-      z-index: 3000;
-      background: #f0fdf4;
-      border: 2px solid #16a34a;
-      border-radius: 14px;
-      padding: 10px 14px;
-      max-width: 300px;
-      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.25);
-      font-size: 11px;
-      line-height: 1.4;
-      color: #14532d;
-      animation: floatLeftPrompt 4.5s ease-in-out infinite 0.5s;
     }
 
     @keyframes floatLeftPrompt {
@@ -600,7 +612,7 @@
     }
 
     .chat-incentive-bubble {
-      background: #ffffff;
+      background: var(--surface-white);
       color: var(--mag-dark);
       border: 2px solid var(--mag-vivid);
       padding: 8px 12px;
@@ -669,7 +681,7 @@
       width: 370px;
       max-width: 92vw;
       height: 530px;
-      background: #ffffff;
+      background: var(--surface-white);
       border-radius: 18px;
       border: 1px solid var(--mag-border);
       box-shadow: 0 12px 35px rgba(0,0,0,0.3);
@@ -708,12 +720,12 @@
 
     /* FOOTER ACADÉMICO CON ÍCONOS DE REDES SOCIALES */
     .academic-footer {
-      background: #18020e;
+      background: var(--mag-darkest);
       color: #fbcfe8;
       font-size: 11px;
       text-align: center;
       padding: 16px 14px;
-      border-top: 2px solid #750e2e;
+      border-top: 2px solid var(--mag-primary);
       line-height: 1.6;
     }
     .footer-social-bar {
@@ -743,15 +755,8 @@
   <!-- BURBUJA DE ADVERTENCIA ACADÉMICA INFERIOR IZQUIERDA -->
   <div id="academic-left-notice">
     <button class="close-notice-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
-    <div style="font-weight: 800; color: #750e2e; margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
+    <div style="font-weight: 800; color: var(--mag-primary); margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
     <div>Prototipo simulado universitario (D. Leg. N° 1412, Ley N° 27444 / Ley N° 29733 de Datos Personales).</div>
-  </div>
-
-  <!-- BURBUJA FLOTANTE DE CIUDADANO DIGITAL (SEPARADA DE LA PORTADA) -->
-  <div id="citizen-digital-notice">
-    <button class="close-notice-btn" onclick="document.getElementById('citizen-digital-notice').style.display='none'" style="color: #15803d;">✕</button>
-    <div style="font-weight: 800; color: #15803d; margin-bottom: 2px;">🌱 ¡Conviértete en un Ciudadano Digital!</div>
-    <div>Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412 y Ley N° 27444). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.</div>
   </div>
 
   <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS -->
@@ -821,13 +826,14 @@
           <button id="btn-lang-en" onclick="switchLanguage('en')" class="lang-btn">EN</button>
           <button id="btn-lang-qu" onclick="switchLanguage('qu')" class="lang-btn">QU</button>
           <button id="btn-lang-ay" onclick="switchLanguage('ay')" class="lang-btn">AY</button>
+          <button onclick="toggleHighContrast()" class="lang-btn btn-contrast" title="Modo Alto Contraste (Art. 24 lit. b - Ley 1412)">🌓</button>
         </div>
 
         <div class="clock-live-badge">
           <span>🕒</span> <span id="live-clock-text">--:--:--</span>
         </div>
 
-        <div class="clock-live-badge" style="background: #18020e; border-color: #be185d;">
+        <div class="clock-live-badge" style="background: var(--mag-darkest); border-color: var(--mag-vivid);">
           <span id="txt-session-label">Sesión:</span> <strong id="clock-display" style="color: #fbcfe8;">07:00</strong>
         </div>
 
@@ -878,7 +884,7 @@
         </div>
 
         <div style="padding: 22px; text-align: left;">
-          <div style="background: #fdf2f8; border: 1px solid var(--mag-border); border-radius: 12px; padding: 14px; margin-bottom: 14px; font-size: 12px; line-height: 1.7;">
+          <div style="background: var(--mag-light); border: 1px solid var(--mag-border); border-radius: 12px; padding: 14px; margin-bottom: 14px; font-size: 12px; line-height: 1.7;">
             <div><span style="color: var(--text-muted);" id="p0-lbl-author">Estudiante:</span> <strong style="color: var(--mag-primary); font-size: 13px;">Sonia Pilar Condori Ruelas</strong></div>
             <div><span style="color: var(--text-muted);" id="p0-lbl-course">Curso:</span> <strong style="color: var(--mag-dark);">GOBIERNO DIGITAL Y DERECHO INFORMÁTICO</strong></div>
             <div><span style="color: var(--text-muted);" id="p0-lbl-teacher">Docente:</span> <strong style="color: var(--mag-dark);">Dr. Michael Espinoza Coila</strong></div>
@@ -899,12 +905,12 @@
 
     <!-- PANTALLA 1: CARGA INICIAL INTERNA -->
     <div id="screen-1" class="screen-stage center-wrapper">
-      <div style="max-width: 360px; width: 100%; text-align: center; background: white; padding: 30px 20px; border-radius: 16px; border: 1px solid var(--mag-border); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <svg style="width: 44px; height: 44px; color: #750e2e; margin-bottom: 12px; animation: spinLoader 1.5s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="max-width: 360px; width: 100%; text-align: center; background: var(--surface-white); padding: 30px 20px; border-radius: 16px; border: 1px solid var(--mag-border); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <svg style="width: 44px; height: 44px; color: var(--mag-primary); margin-bottom: 12px; animation: spinLoader 1.5s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
-        <h3 id="p1-loader-title" style="font-size: 15px; font-weight: 700; color: #3f0314;">Estableciendo Conexión Cifrada</h3>
-        <p id="p1-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Accediendo a la Sede Central Puno - CSJ Puno...</p>
+        <h3 id="p1-loader-title" style="font-size: 15px; font-weight: 700; color: var(--mag-dark);">Estableciendo Conexión Cifrada</h3>
+        <p id="p1-loader-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Accediendo a la Sede Central Puno - CSJ Puno...</p>
         <div style="font-weight: 800; font-size: 14px; color: var(--mag-vivid); margin-top: 14px;" id="p1-percentage">0%</div>
         <div style="background: #fce7f3; height: 8px; border-radius: 8px; overflow: hidden; margin-top: 6px;">
           <div id="p1-progress-bar" style="height: 100%; background: linear-gradient(90deg, #750e2e, #be185d); width: 0%; transition: width 0.1s linear;"></div>
@@ -916,7 +922,7 @@
     <div id="screen-2" class="screen-stage">
       <div style="max-width: 1100px; width: 100%; margin: 20px auto; padding: 0 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
         
-        <div id="box-temis-blank" onclick="startSearchFlow()" style="background: white; border: 1px solid var(--mag-border); border-radius: 20px; text-align: center; padding: 42px 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+        <div id="box-temis-blank" onclick="startSearchFlow()" style="background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 20px; text-align: center; padding: 42px 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
           <svg style="width: 80px; height: 110px; margin: 0 auto 14px; display: block;" viewBox="0 0 200 320" fill="none">
             <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
             <rect x="83" y="32" width="34" height="6" fill="#be185d" rx="2"/>
@@ -929,17 +935,17 @@
             <path d="M175 75 Q190 85 205 75 Z" fill="#be185d"/>
             <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="5"/>
           </svg>
-          <h2 id="p2-temis-title" style="font-size: 19px; color: #3f0314; font-weight: 800;">Portal Electrónico Judicial - CSJ Puno</h2>
-          <p id="p2-temis-desc" style="font-size: 13px; color: #64748b; max-width: 500px; margin: 8px auto 16px;">
+          <h2 id="p2-temis-title" style="font-size: 19px; color: var(--mag-dark); font-weight: 800;">Portal Electrónico Judicial - CSJ Puno</h2>
+          <p id="p2-temis-desc" style="font-size: 13px; color: var(--text-muted); max-width: 500px; margin: 8px auto 16px;">
             Seleccione aquí para validar la seguridad e iniciar la consulta de causas.
           </p>
-          <span id="p2-temis-badge" style="font-size: 11px; background: #be185d; color: white; padding: 7px 16px; border-radius: 20px; font-weight: bold; display: inline-block;">
+          <span id="p2-temis-badge" style="font-size: 11px; background: var(--mag-vivid); color: white; padding: 7px 16px; border-radius: 20px; font-weight: bold; display: inline-block;">
             Iniciar Búsqueda
           </span>
         </div>
 
-        <div id="panel-search-form" style="display: none; background: white; border: 1px solid var(--mag-border); border-radius: 20px; padding: 22px; max-width: 650px; margin: 0 auto; width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-          <div style="background: #3f0314; color: white; padding: 14px 18px; border-radius: 12px 12px 0 0; margin: -22px -22px 18px; display: flex; justify-content: space-between; align-items: center;">
+        <div id="panel-search-form" style="display: none; background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 20px; padding: 22px; max-width: 650px; margin: 0 auto; width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+          <div style="background: var(--mag-dark); color: white; padding: 14px 18px; border-radius: 12px 12px 0 0; margin: -22px -22px 18px; display: flex; justify-content: space-between; align-items: center;">
             <strong id="p2-form-heading" style="font-size: 13px;">Búsqueda Jurisdiccional de Causas</strong>
             <button onclick="cancelSearchFlow()" style="background: none; border: none; color: #fbcfe8; cursor: pointer; font-size: 16px;">✕</button>
           </div>
@@ -952,19 +958,19 @@
           <div id="fields-general">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 12px;">
               <div>
-                <label style="font-size: 11px; font-weight: bold; color: #64748b;">Correlativo</label>
+                <label style="font-size: 11px; font-weight: bold; color: var(--text-muted);">Correlativo</label>
                 <input type="text" id="input-exp-corr" value="00170" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
-                <label style="font-size: 11px; font-weight: bold; color: #64748b;">Año</label>
+                <label style="font-size: 11px; font-weight: bold; color: var(--text-muted);">Año</label>
                 <input type="text" value="2023" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
-                <label style="font-size: 11px; font-weight: bold; color: #64748b;">Cuaderno</label>
+                <label style="font-size: 11px; font-weight: bold; color: var(--text-muted);">Cuaderno</label>
                 <input type="text" value="0" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
               <div>
-                <label style="font-size: 11px; font-weight: bold; color: #64748b;">Distrito Jud.</label>
+                <label style="font-size: 11px; font-weight: bold; color: var(--text-muted);">Distrito Jud.</label>
                 <input type="text" value="2101" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
               </div>
             </div>
@@ -973,22 +979,22 @@
           <div id="fields-especializada" style="display: none; margin-bottom: 12px; font-size: 11px;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
               <div>
-                <label style="font-weight: bold; color: #64748b;">Distrito Judicial:</label>
+                <label style="font-weight: bold; color: var(--text-muted);">Distrito Judicial:</label>
                 <select style="width:100%; padding:7px; border-radius:6px; border:1px solid #cbd5e1;"><option>PUNO - SEDE ANEXA PUNO</option></select>
               </div>
               <div>
-                <label style="font-weight: bold; color: #64748b;">Juzgado de Origen:</label>
+                <label style="font-weight: bold; color: var(--text-muted);">Juzgado de Origen:</label>
                 <select style="width:100%; padding:7px; border-radius:6px; border:1px solid #cbd5e1;"><option>1° JUZGADO DE TRABAJO TRANSITORIO - ZONA SUR</option></select>
               </div>
             </div>
             <div>
-              <label style="font-weight: bold; color: #64748b;">Demandante o Demandado:</label>
+              <label style="font-weight: bold; color: var(--text-muted);">Demandante o Demandado:</label>
               <input type="text" id="input-party-name" value="H. D. A. A." style="width: 100%; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold;" onkeypress="if(event.key==='Enter') switchScreen(4)">
             </div>
           </div>
 
-          <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 16px;">
-            Expediente asignado: <strong style="color: #750e2e;">00170-2023-0-2101-JR-LA-01</strong> (H. D. A. A. vs M. P. C. - J.)
+          <div style="background: var(--mag-light); border: 1px solid var(--mag-border); padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 16px;">
+            Expediente asignado: <strong style="color: var(--mag-primary);">00170-2023-0-2101-JR-LA-01</strong> (H. D. A. A. vs M. P. C. - J.)
           </div>
 
           <button onclick="switchScreen(4)" class="btn-action-primary" id="p2-btn-submit">
@@ -1001,12 +1007,12 @@
 
     <!-- PANTALLA 4: CARGA DE BASE DE DATOS -->
     <div id="screen-4" class="screen-stage center-wrapper">
-      <div style="max-width: 360px; width: 100%; text-align: center; background: white; padding: 30px 20px; border-radius: 16px; border: 1px solid var(--mag-border); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <svg style="width: 44px; height: 44px; color: #be185d; margin-bottom: 12px; animation: bounce 1s infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div style="max-width: 360px; width: 100%; text-align: center; background: var(--surface-white); padding: 30px 20px; border-radius: 16px; border: 1px solid var(--mag-border); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <svg style="width: 44px; height: 44px; color: var(--mag-vivid); margin-bottom: 12px; animation: bounce 1s infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/>
         </svg>
-        <h3 id="p4-loader-title" style="font-size: 15px; font-weight: 700; color: #3f0314;">Indexando Cuaderno Laboral Digital</h3>
-        <p id="p4-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Recuperando resoluciones, anexos y actas de audiencias...</p>
+        <h3 id="p4-loader-title" style="font-size: 15px; font-weight: 700; color: var(--mag-dark);">Indexando Cuaderno Laboral Digital</h3>
+        <p id="p4-loader-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Recuperando resoluciones, anexos y actas de audiencias...</p>
         <div style="font-weight: 800; font-size: 14px; color: var(--mag-primary); margin-top: 14px;" id="p4-percentage">0%</div>
         <div style="background: #fce7f3; height: 8px; border-radius: 8px; overflow: hidden; margin-top: 6px;">
           <div id="p4-progress-bar" style="height: 100%; background: linear-gradient(90deg, #750e2e, #be185d); width: 0%; transition: width 0.1s linear;"></div>
@@ -1026,59 +1032,83 @@
           </div>
           <div id="acc-sec-1" class="accordion-content">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 12px;">
-              <div><span style="color: #64748b; display: block;" id="lbl-dist">Distrito Judicial / Sede:</span> <strong>Puno / Sede Anexa Puno</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-court">Juzgado:</span> <strong>1° Juzgado de Trabajo Transitorio - Zona Sur</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-judge">Juez a Cargo:</span> <strong>Dra. K. Y. R. C. / Dr. A. B. R.</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-sec">Secretaria Judicial:</span> <strong>Abog. N. V. M.</strong></div>
-              <div><span style="color: #64748b; display: block;" id="lbl-matter">Materia / Vía:</span> <strong style="color: #750e2e;">Derechos Laborales / Proceso Ordinario (Ley 29497)</strong></div>
-              <div><span style="color: #64748b; display: block;">Estado Actual:</span> <strong style="color: #059669;">ETAPA DE JUZGAMIENTO (Sentencia)</strong></div>
+              <div><span style="color: var(--text-muted); display: block;" id="lbl-dist">Distrito Judicial / Sede:</span> <strong>Puno / Sede Anexa Puno</strong></div>
+              <div><span style="color: var(--text-muted); display: block;" id="lbl-court">Juzgado:</span> <strong>1° Juzgado de Trabajo Transitorio - Zona Sur</strong></div>
+              <div><span style="color: var(--text-muted); display: block;" id="lbl-judge">Juez a Cargo:</span> <strong>Dra. K. Y. R. C. / Dr. A. B. R.</strong></div>
+              <div><span style="color: var(--text-muted); display: block;" id="lbl-sec">Secretaria Judicial:</span> <strong>Abog. N. V. M.</strong></div>
+              <div><span style="color: var(--text-muted); display: block;" id="lbl-matter">Materia / Vía:</span> <strong style="color: var(--mag-primary);">Derechos Laborales / Proceso Ordinario (Ley 29497)</strong></div>
+              <div><span style="color: var(--text-muted); display: block;">Estado Actual:</span> <strong style="color: #059669;">ETAPA DE JUZGAMIENTO (Sentencia)</strong></div>
             </div>
           </div>
         </div>
 
-        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA -->
+        <!-- II. ESTRUCTURA Y METADATOS (Art. 40 DL 1412) -->
+        <div class="accordion-card">
+          <div class="accordion-header" onclick="toggleAccordion('acc-sec-meta')">
+            <h3 id="sec-meta-title">II. ESTRUCTURA Y METADATOS DEL EXPEDIENTE (Art. 40 D. Leg. 1412)</h3>
+            <span id="acc-sec-meta-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
+          </div>
+          <div id="acc-sec-meta" class="accordion-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
+              <div style="background: var(--bg-main); padding: 10px; border-radius: 6px; border: 1px solid var(--mag-border);">
+                <strong style="color: #0284c7;">a) Número / Código Único:</strong><br> 00170-2023-0-2101-JR-LA-01
+              </div>
+              <div style="background: var(--bg-main); padding: 10px; border-radius: 6px; border: 1px solid var(--mag-border);">
+                <strong style="color: #0284c7;">b) Índice Digital:</strong><br> Formado cronológicamente con resúmenes Hash (SHA-256).
+              </div>
+              <div style="background: var(--bg-main); padding: 10px; border-radius: 6px; border: 1px solid var(--mag-border);">
+                <strong style="color: #0284c7;">d) Firma del Índice Digital:</strong><br> Autenticada con Certificado de Agente Automatizado (IOFE).
+              </div>
+              <div style="background: var(--bg-main); padding: 10px; border-radius: 6px; border: 1px solid var(--mag-border);">
+                <strong style="color: #0284c7;">f) Categorización:</strong><br> Ordinario Laboral - Reposición / Invalidez CAS (Riesgo Nivel Medio).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- III. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-2')">
-            <h3 id="sec-ii-title">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA (MCCLO)</h3>
+            <h3 id="sec-ii-title">III. ESTADO Y LÍNEA DE TIEMPO DEL PROCESO (MCCLO)</h3>
             <span id="acc-sec-2-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-2" class="accordion-content">
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
               <button onclick="downloadCompleteExpediente()" class="btn-row-action btn-download-pdf" id="btn-print-exp">
-                📥 Descargar Expediente PDF Anonimizado
+                📥 Descargar Expediente PDF
               </button>
             </div>
             <div class="stepper-bar">
               <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>1. Postulatoria</strong></div>
               <div class="stepper-step"><div class="stepper-circle stepper-done">✓</div><strong>2. Probatoria (Concil.)</strong></div>
-              <div class="stepper-step"><div class="stepper-circle stepper-active">3</div><strong style="color: #be185d;">3. Decisoria (Juzgam.)</strong></div>
-              <div class="stepper-step"><div class="stepper-circle" style="background:#cbd5e1; color:white;">4</div><strong style="color: #64748b;">4. Ejecución</strong></div>
+              <div class="stepper-step"><div class="stepper-circle stepper-active">3</div><strong style="color: var(--mag-vivid);">3. Decisoria (Juzgam.)</strong></div>
+              <div class="stepper-step"><div class="stepper-circle" style="background:#cbd5e1; color:white;">4</div><strong style="color: var(--text-muted);">4. Ejecución</strong></div>
             </div>
             <div class="timeline-wrapper" id="timeline-flow-box"></div>
           </div>
         </div>
 
-        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD -->
+        <!-- IV. PARTES PROCESALES E INTEROPERABILIDAD -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-3')">
-            <h3 id="sec-iii-title">III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412 / LEY 27444)</h3>
+            <h3 id="sec-iii-title">IV. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - pide)</h3>
             <span id="acc-sec-3-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-3" class="accordion-content">
             
-            <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
-              <div style="font-weight: bold; font-size: 13px; color: #750e2e;">DEMANDANTE: H. D. A. A. (DNI 7483****)</div>
-              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Abog. R. A. C. (Reg. CAP 1976) / Abog. R. L. A. M. (Reg. CAP 5627) | Casilla SINOE: 2602</div>
+            <div style="background: var(--mag-light); border: 1px solid var(--mag-border); border-radius: 12px; padding: 12px; margin-bottom: 12px;">
+              <div style="font-weight: bold; font-size: 13px; color: var(--mag-primary);">DEMANDANTE: H. D. A. A. (DNI 7483****)</div>
+              <div style="font-size: 11px; color: var(--text-muted); margin: 4px 0 6px;">Abog. R. A. C. (Reg. CAP 1976) / Abog. R. L. A. M. (Reg. CAP 5627) | Casilla SINOE: 2602</div>
             </div>
 
             <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
-              <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Municipalidad Provincial de Chucuito - Juli (RUC 2016****)</div>
-              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Procurador Público: Abog. N. H. C. F. (Reg. CAP 5253) | Casilla: 71295</div>
+              <div style="font-weight: bold; font-size: 13px; color: var(--mag-vivid);">DEMANDADA: Municipalidad Provincial de Chucuito - Juli (RUC 2016****)</div>
+              <div style="font-size: 11px; color: var(--text-muted); margin: 4px 0 6px;">Procurador Público: Abog. N. H. C. F. (Reg. CAP 5253) | Casilla: 71295</div>
             </div>
 
             <!-- BÚSQUEDA ABIERTA CON ENTER -->
-            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
-              <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Módulo de Consulta Interoperable ABIERTO (PISDP - D. Leg. 1412)</strong>
+            <div style="background: var(--bg-main); border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
+              <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Módulo de Consulta Interoperable ABIERTO (pide)</strong>
               <div style="display: flex; gap: 8px; margin-bottom: 8px;">
                 <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos de cualquier persona..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;" onkeypress="if(event.key==='Enter') triggerDynamicInterop('RENIEC')">
               </div>
@@ -1106,10 +1136,10 @@
           </div>
         </div>
 
-        <!-- IV. SEGUIMIENTO CORRELATIVO CON CENSURA TOTAL -->
+        <!-- V. SEGUIMIENTO CORRELATIVO Y CVD -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-4')">
-            <h3 id="sec-iv-title">IV. SEGUIMIENTO CORRELATIVO DEL EXPEDIENTE (ANONIMIZADO LEY 29733)</h3>
+            <h3 id="sec-iv-title">V. SEGUIMIENTO CORRELATIVO DEL EXPEDIENTE</h3>
             <span id="acc-sec-4-icon" style="font-size:12px; color:var(--mag-vivid);">▲</span>
           </div>
           <div id="acc-sec-4" class="accordion-content">
@@ -1121,6 +1151,7 @@
                     <th style="padding: 8px;">Fojas</th>
                     <th style="padding: 8px;">Fecha</th>
                     <th style="padding: 8px;">Actuación Judicial / Contenido Documental</th>
+                    <th style="padding: 8px;">CVD (Art. 35)</th>
                     <th style="padding: 8px; text-align: center;">Acciones</th>
                   </tr>
                 </thead>
@@ -1137,18 +1168,18 @@
 
   <!-- MODAL DE PROTECCIÓN DE DATOS Y COMUNICADO ADAPTADO -->
   <div id="modal-comunicado" class="modal-overlay">
-    <div class="modal-sheet" style="max-width: 540px; padding: 24px; border-top: 5px solid #750e2e;">
+    <div class="modal-sheet" style="max-width: 540px; padding: 24px; border-top: 5px solid var(--mag-primary);">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
-        <svg style="width: 50px; height: 50px; color: #750e2e; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg style="width: 50px; height: 50px; color: var(--mag-primary); flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           <path d="M12 8v4"/><path d="M12 16h.01"/>
         </svg>
         <div>
-          <h3 style="color: #3f0314; font-size: 15px; font-weight: 800; text-transform: uppercase;">COMUNICADO OFICIAL DE SEGURIDAD Y VALIDEZ</h3>
-          <span style="font-size: 10px; color: #64748b;">Acreditación y Protección Institucional de Datos</span>
+          <h3 style="color: var(--mag-dark); font-size: 15px; font-weight: 800; text-transform: uppercase;">COMUNICADO OFICIAL DE SEGURIDAD Y VALIDEZ</h3>
+          <span style="font-size: 10px; color: var(--text-muted);">Acreditación y Protección Institucional de Datos</span>
         </div>
       </div>
-      <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 14px; border-radius: 10px; font-size: 12px; line-height: 1.6; color: #334155; text-align: justify; margin-bottom: 16px;">
+      <div style="background: var(--mag-light); border: 1px solid var(--mag-border); padding: 14px; border-radius: 10px; font-size: 12px; line-height: 1.6; text-align: justify; margin-bottom: 16px;">
         El presente entorno digital cumple estrictamente con las exigencias legales previstas en la <strong>Ley N° 27444</strong> y el marco normativo de <strong>Gobierno Digital (D. Leg. N° 1412)</strong>, asegurando un acceso transparente, la validez probatoria de las actuaciones electrónicas y la debida protección del derecho a la privacidad de los litigantes.
       </div>
       <button onclick="acceptComunicadoAndShowSearch()" class="btn-action-primary">
@@ -1157,36 +1188,41 @@
     </div>
   </div>
 
-  <!-- MODAL CAPTCHA INCLUSIVO CON TECLA ENTER -->
+  <!-- MODAL AUTENTICACIÓN ID GOB.PE (NCA Nivel 2) -->
   <div id="modal-captcha" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 440px; padding: 22px; position: relative;">
-      <button onclick="closeModal('modal-captcha')" style="position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: #64748b;">✕</button>
+      <button onclick="closeModal('modal-captcha')" style="position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted);">✕</button>
 
-      <h3 style="color: #3f0314; font-size: 14px; font-weight: bold; margin-bottom: 6px;">Autenticación Inclusiva de Seguridad</h3>
-      <p style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
-        Por medidas de seguridad y protección automatizada, complete la verificación:
+      <h3 style="color: var(--mag-dark); font-size: 14px; font-weight: bold; margin-bottom: 2px;">Autenticación ID GOB.PE (NCA Nivel 2)</h3>
+      <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4;">
+        Validación de Identidad Digital (Art. 14, D. Leg. 1412)
       </p>
 
-      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
-        <div id="captcha-display-text" style="background: #18020e; color: #fbcfe8; font-family: monospace; font-size: 20px; font-weight: 800; letter-spacing: 4px; padding: 8px 12px; border-radius: 8px; text-decoration: line-through; transform: skewX(-8deg);">
-          8M4X1
-        </div>
-        <button onclick="speakCaptchaCode()" style="padding: 8px 10px; border: 1px solid #be185d; background: #fdf2f8; color: #be185d; border-radius: 6px; cursor: pointer; font-weight: bold;" title="Dictado por Voz">🔊 Audiodictado</button>
-        <button onclick="generateRandomCaptcha()" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; background: white;" title="Nuevo Código">↻</button>
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 11px; font-weight: bold; color: var(--text-muted);">Número de DNI / CUI:</label>
+        <input type="text" placeholder="Ingrese su documento de identidad" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: bold; margin-top: 4px;">
       </div>
 
-      <input type="text" id="captcha-input-field" placeholder="Escriba el código y presione Enter" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-weight: bold; margin-bottom: 12px;" onkeypress="if(event.key==='Enter') validateCaptchaAction()">
+      <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+        <div id="captcha-display-text" style="background: var(--mag-darkest); color: var(--mag-border); font-family: monospace; font-size: 20px; font-weight: 800; letter-spacing: 4px; padding: 8px 12px; border-radius: 8px; text-decoration: line-through; transform: skewX(-8deg);">
+          8M4X1
+        </div>
+        <button onclick="speakCaptchaCode()" style="padding: 8px 10px; border: 1px solid var(--mag-vivid); background: var(--mag-light); color: var(--mag-vivid); border-radius: 6px; cursor: pointer; font-weight: bold;" title="Dictado por Voz">🔊 Audio</button>
+        <button onclick="generateRandomCaptcha()" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; background: var(--surface-white);" title="Nuevo Código">↻</button>
+      </div>
 
-      <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 12px; font-weight: bold; color: #334155;">
+      <input type="text" id="captcha-input-field" placeholder="Escriba el código de seguridad y presione Enter" style="width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; text-transform: uppercase; font-weight: bold; margin-bottom: 12px;" onkeypress="if(event.key==='Enter') validateCaptchaAction()">
+
+      <div style="background: var(--bg-main); border: 1px solid #cbd5e1; padding: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 12px; font-weight: bold; color: var(--text-main);">
           <input type="checkbox" id="captcha-checkbox" style="width: 18px; height: 18px; cursor: pointer;">
           <span>No soy un robot</span>
         </label>
         <svg style="width: 24px; height: 24px; color: #0284c7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
 
-      <button onclick="validateCaptchaAction()" class="btn-action-primary">Validar y Continuar</button>
-      <div id="captcha-error-text" style="display: none; color: #e11d48; font-size: 11px; margin-top: 6px; text-align: center; font-weight: bold;">Marque la casilla e introduzca el código.</div>
+      <button onclick="validateCaptchaAction()" class="btn-action-primary">Validar Identidad y Continuar</button>
+      <div id="captcha-error-text" style="display: none; color: #e11d48; font-size: 11px; margin-top: 6px; text-align: center; font-weight: bold;">Por favor, complete los datos y el código correctamente.</div>
     </div>
   </div>
 
@@ -1194,18 +1230,18 @@
   <div id="modal-generic-interop" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 500px; padding: 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 14px;">
-        <div id="gen-interop-heading" style="font-weight: 800; color: #0284c7; font-size: 13px;">RENIEC - CONSULTA REGISTRAL</div>
+        <div id="gen-interop-heading" style="font-weight: 800; color: #0284c7; font-size: 13px;">RENIEC - CONSULTA REGISTRAL pide</div>
         <button onclick="closeModal('modal-generic-interop')" style="background: none; border: none; font-size: 18px; cursor: pointer;">✕</button>
       </div>
 
-      <div style="display: flex; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 10px;">
+      <div style="display: flex; gap: 14px; background: var(--bg-main); border: 1px solid #e2e8f0; padding: 14px; border-radius: 10px;">
         <div id="interop-avatar-frame" style="width: 110px; height: 125px; background: #e2e8f0; border: 2px solid #0284c7; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0;">
         </div>
 
         <div style="flex-grow: 1; font-size: 11px; line-height: 1.7;">
-          <div><span style="color: #64748b;">Titular Consultado:</span> <strong id="gen-interop-person">H. D. A. A.</strong></div>
-          <div><span style="color: #64748b;">Documento Identidad:</span> <strong id="gen-interop-number">DNI 7483****</strong></div>
-          <div style="margin-top: 6px; background: white; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" id="gen-interop-details">
+          <div><span style="color: var(--text-muted);">Titular Consultado:</span> <strong id="gen-interop-person">H. D. A. A.</strong></div>
+          <div><span style="color: var(--text-muted);">Documento Identidad:</span> <strong id="gen-interop-number">DNI 7483****</strong></div>
+          <div style="margin-top: 6px; background: var(--surface-white); padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;" id="gen-interop-details">
             Sin observaciones vigentes.
           </div>
         </div>
@@ -1233,7 +1269,7 @@
     <div class="modal-sheet" style="max-width: 580px; padding: 22px;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--mag-border); padding-bottom: 8px; margin-bottom: 12px;">
         <h3 id="info-modal-heading" style="color: var(--mag-primary); font-size: 15px; font-weight: 800;">Información Institucional</h3>
-        <button onclick="closeModal('modal-info-view')" style="background: none; border: none; font-size: 18px; cursor: pointer;">✕</button>
+        <button onclick="closeModal('modal-info-view')" style="background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-main);">✕</button>
       </div>
       <div id="info-modal-text" style="font-size: 12px; line-height: 1.6; color: var(--text-main); margin-bottom: 16px;"></div>
       <button onclick="closeModal('modal-info-view')" class="btn-action-primary" style="padding: 8px 14px; font-size: 12px;">Cerrar</button>
@@ -1243,7 +1279,7 @@
   <!-- CHATBOT IURISNIANO REANIMADO Y AMIGABLE -->
   <div id="chatbot-wrapper">
     <div id="chat-prompt-bubble" class="chat-incentive-bubble" onclick="openAndHidePromptChat()">
-      💬 ¡Hola! Soy Iurisniano ⚖️ ¿Tienes dudas legales?
+      💬 ¡Hola! Soy Iurisniano ⚖️ ¿Necesitas ayuda con el expediente?
     </div>
 
     <div id="chatbot-bubble" onclick="openAndHidePromptChat()" title="Asistente Virtual Iurisniano">
@@ -1260,7 +1296,7 @@
   <div id="chatbot-dialog">
     <div style="background: linear-gradient(135deg, #3f0314, #be185d, #e11d48); color: white; padding: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 34px; height: 34px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #750e2e; font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">⚖️</div>
+        <div style="width: 34px; height: 34px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--mag-primary); font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">⚖️</div>
         <div>
           <strong style="font-size: 14px; letter-spacing: 0.5px;">IURISNIANO</strong>
           <div style="font-size: 9.5px; color: #fce7f3; display: flex; align-items: center; gap: 4px;">
@@ -1272,21 +1308,21 @@
     </div>
 
     <!-- BOTONES DE NAVEGACIÓN RÁPIDA -->
-    <div style="display: flex; gap: 6px; padding: 8px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
-      <button onclick="quickAskBot('¿Cuáles son las garantías de la Ley 27444 y el DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold; transition: background 0.2s;">⚖️ Ley 27444 / DL 1412</button>
-      <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen Caso</button>
-      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Sentencia</button>
-      <button onclick="quickAskBot('¿Qué exige la Ley de Protección de Datos Personales 29733?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🔒 Ley N° 29733</button>
+    <div style="display: flex; gap: 6px; padding: 8px 10px; background: var(--mag-light); border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
+      <button onclick="quickAskBot('Dame un resumen del caso')" style="background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: var(--mag-primary); font-weight: bold; transition: background 0.2s;">📊 Resumen del Caso</button>
+      <button onclick="quickAskBot('Ayúdame a comprender términos legales')" style="background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: var(--mag-primary); font-weight: bold;">📖 Comprender Términos</button>
+      <button onclick="quickAskBot('¿Cómo se estructuran los expedientes según la Ley?')" style="background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: var(--mag-primary); font-weight: bold;">📁 Estructura del Expediente</button>
+      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: var(--surface-white); border: 1px solid var(--mag-border); border-radius: 12px; padding: 4px 10px; font-size: 9.5px; cursor: pointer; white-space: nowrap; color: var(--mag-primary); font-weight: bold;">🎯 Estado Actual</button>
     </div>
 
-    <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
-      <div style="background: #ffffff; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--mag-border); max-width: 88%; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
-        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu guía interactivo. Estoy listo para ayudarte con consultas de la **Ley N° 27444**, el **D. Leg. N° 1412 de Gobierno Digital**, la **Ley N° 29733** y los detalles del expediente judicial actual.
+    <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: var(--bg-main);">
+      <div style="background: var(--surface-white); padding: 10px 12px; border-radius: 14px; border: 1px solid var(--mag-border); max-width: 88%; align-self: flex-start; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+        ¡Kamisaraki! / ¡Hola! 👋 Soy <strong>IURISNIANO</strong>. Estoy listo para ayudarte a entender los documentos, brindarte un resumen del caso, explicarte términos legales o el estado actual del trámite.
       </div>
     </div>
 
-    <div style="padding: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; background: white; align-items: center;">
-      <input type="text" id="chatbot-text-input" placeholder="Escribe tu consulta y presiona Enter..." style="flex-grow: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 11px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#be185d'" onblur="this.style.borderColor='#cbd5e1'" onkeypress="if(event.key==='Enter') sendChatMessage()">
+    <div style="padding: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; background: var(--surface-white); align-items: center;">
+      <input type="text" id="chatbot-text-input" placeholder="Escribe tu consulta y presiona Enter..." style="flex-grow: 1; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 11px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='var(--mag-vivid)'" onblur="this.style.borderColor='#cbd5e1'" onkeypress="if(event.key==='Enter') sendChatMessage()">
       <button onclick="sendChatMessage()" style="background: linear-gradient(135deg, #750e2e, #be185d); color: white; border: none; padding: 8px 14px; border-radius: 10px; font-size: 11px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 6px rgba(190,24,93,0.3);">Enviar</button>
     </div>
   </div>
@@ -1339,6 +1375,11 @@
 
   <!-- LÓGICA JAVASCRIPT COMPLETA CON ENTER, MULTI-IDIOMA Y SCRIPT DEL CHATBOT -->
   <script>
+    // ACCESIBILIDAD ALTO CONTRASTE (Art. 24 b DL 1412)
+    function toggleHighContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
     // CARGA PANTALLA INICIAL
     window.addEventListener('DOMContentLoaded', () => {
       const splashOverlay = document.getElementById('full-page-splash');
@@ -1532,11 +1573,11 @@
       const boxE = document.getElementById('fields-especializada');
 
       if (mode === 'general') {
-        btnG.style.background = '#750e2e'; btnG.style.color = 'white';
+        btnG.style.background = 'var(--mag-primary)'; btnG.style.color = 'white';
         btnE.style.background = '#e2e8f0'; btnE.style.color = '#334155';
         boxG.style.display = 'block'; boxE.style.display = 'none';
       } else {
-        btnE.style.background = '#750e2e'; btnE.style.color = 'white';
+        btnE.style.background = 'var(--mag-primary)'; btnE.style.color = 'white';
         btnG.style.background = '#e2e8f0'; btnG.style.color = '#334155';
         boxE.style.display = 'block'; boxG.style.display = 'none';
       }
@@ -1614,7 +1655,7 @@
           <div style="line-height:1.7;">
             <p><strong>1. Búsqueda de Causas:</strong> Valide la casilla "No soy un robot" y el código CAPTCHA en pantalla. Puede presionar la tecla Enter para ingresar.</p>
             <p><strong>2. Lector Inclusivo TalkBack:</strong> Active la lectura por voz con el botón 🔊 o mediante la combinación de teclas <strong>Alt + A</strong>.</p>
-            <p><strong>3. Visualización y Descarga:</strong> Seleccione cualquier fila o nodo de la línea de tiempo para desplegar la resolución de manera directa. Si lo desea, utilice el botón Descargar.</p>
+            <p><strong>3. Visualización y Descarga:</strong> Seleccione cualquier fila o nodo de la línea de tiempo para desplegar la resolución de manera directa en el visor embebido sin descargas forzadas.</p>
             <div style="margin-top: 14px; text-align: center;">
               <a href="https://www.youtube.com" target="_blank" style="background: #dc2626; color: white; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; display: inline-flex; align-items: center; gap: 6px; font-size: 11px;">
                 ▶️ Ver Video Tutorial Interactivo en YouTube
@@ -1664,8 +1705,8 @@
       num.innerText = "DNI " + randomDni;
 
       if (type.includes('RENIEC')) {
-        heading.innerText = "RENIEC - CONSULTA REGISTRAL PISDP";
-        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno - Puno)<br>Censura Técnica: Ley N° 29733 aplicada.";
+        heading.innerText = "RENIEC - CONSULTA REGISTRAL PIDE";
+        details.innerHTML = "Estado: <strong style='color:#059669;'>CIUDADANO HÁBIL</strong><br>Ubigeo: 210101 (Puno - Puno)<br>Validación: Correcta.";
       } else if (type === 'MIGRACIONES') {
         heading.innerText = "MIGRACIONES - CONTROL TRANSFRONTERIZO";
         details.innerHTML = "Alertas Migratorias: <strong>NINGUNA ALERTA REGISTRADA</strong><br>Estado de Pasaporte: VÁLIDO Y VIGENTE.";
@@ -1703,7 +1744,7 @@
       
       const link = document.createElement('a');
       link.href = target.url;
-      link.target = "_blank"; // Abre en nueva pestaña para que el navegador decida (descargar/visualizar original)
+      link.target = "_blank"; // Abre en nueva pestaña para que el navegador decida
       link.download = target.t + ".pdf";
       link.click();
     }
@@ -1726,10 +1767,10 @@
           <div class="timeline-dot"></div>
           <div class="timeline-card">
             <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:2px;">
-              <strong style="color:#750e2e;">${item.t}</strong>
-              <span style="color:#64748b; font-family:monospace;">${item.d}</span>
+              <strong style="color:var(--mag-primary);">${item.t}</strong>
+              <span style="color:var(--text-muted); font-family:monospace;">${item.d}</span>
             </div>
-            <div style="font-size:11px; color:#334155;">${item.des}</div>
+            <div style="font-size:11px; color:var(--text-main);">${item.des}</div>
           </div>
         `;
         tBox.appendChild(div);
@@ -1745,13 +1786,18 @@
           if (!e.target.closest('button')) openPdfDocument(a.n);
         };
 
+        const randomCVD = Math.random().toString(36).substring(2,8).toUpperCase() + "-" + Math.random().toString(36).substring(2,8).toUpperCase();
+
         tr.innerHTML = `
           <td style="padding:7px; text-align:center; font-weight:bold;">0${a.n}</td>
           <td style="padding:7px; font-family:monospace;">${a.f}</td>
           <td style="padding:7px;">${a.d}</td>
           <td style="padding:7px;">
-            <strong style="color:#750e2e;">${a.t}</strong>
-            <div style="font-size:11px; color:#64748b;">${a.des}</div>
+            <strong style="color:var(--mag-primary);">${a.t}</strong>
+            <div style="font-size:11px; color:var(--text-muted);">${a.des}</div>
+          </td>
+          <td style="padding:7px; font-family:monospace; font-size:10px; color:#0284c7; font-weight:bold;">
+            CVD: ${randomCVD}
           </td>
           <td style="padding:7px; text-align:center; white-space:nowrap;">
             <button onclick="downloadSinglePdf(${a.n})" class="btn-row-action btn-download-pdf">📥 Descargar</button>
@@ -1795,7 +1841,7 @@
       // Animación de tres puntos mientras responde
       const typingMsg = document.createElement('div');
       typingMsg.id = "bot-typing-temp";
-      typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:14px; padding:6px 10px; max-width:85%; align-self:flex-start;";
+      typingMsg.style = "background:var(--surface-white); border:1px solid var(--mag-border); border-radius:14px; padding:6px 10px; max-width:85%; align-self:flex-start;";
       typingMsg.innerHTML = `
         <div class="typing-indicator">
           <div class="typing-dot"></div>
@@ -1808,18 +1854,16 @@
 
       // Procesamiento de respuestas
       const q = val.toLowerCase();
-      let resp = "Con gusto respondo tu inquietud. Como **IURISNIANO**, puedo orientarte sobre la **Ley N° 27444**, el **D. Leg. N° 1412 (Gobierno Digital)**, la **Ley N° 29733** o el estado del caso.";
+      let resp = "Con gusto respondo tu inquietud. Como **IURISNIANO**, puedo orientarte con resúmenes del caso, explicaciones de términos complejos y detalles de la estructura del expediente judicial.";
 
-      if (q.includes("27444") || q.includes("principios") || q.includes("1412") || q.includes("garantias")) {
-        resp = `📜 **CUMPLIMIENTO NORMATIVO DIGITAL:**<br><br>
-        • **Ley N° 27444:** Garantiza el debido procedimiento, impulso de oficio, verdad material, celeridad y eficacia en cada acto procesal conducido por medios digitales.<br><br>
-        • **D. Leg. N° 1412 (Gobierno Digital):** Fundamenta la autenticidad del Expediente Judicial Electrónico (EJE), el uso de la firma digital con valor legal y la interoperabilidad entre entidades del Estado.`;
-      } else if (q.includes("resumen")) {
-        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Derechos Laborales (Invalidez CAS, Reposición).<br>• **Partes:** H. D. A. A. vs M. P. C. - J.<br>• **Resolución:** Sentencia N° 036-2023-JLP que declara la condición de Obrero Municipal bajo D. Leg. 728.<br>• **Estado Actual:** **Etapa de Juzgamiento (Sentencia emitido mediante Juzgamiento Anticipado)**.";
-      } else if (q.includes("etapa") || q.includes("sentencia")) {
-        resp = "🎯 **ETAPA DE JUZGAMIENTO:** El Juzgado optó por el Juzgamiento Anticipado (Art. 43, Ley N° 29497). La causa concluyó con la Sentencia N° 036-2023-JLP, siendo notificada electrónicamente mediante la Cédula SINOE N° 10646.";
-      } else if (q.includes("29733") || q.includes("datos") || q.includes("privacidad")) {
-        resp = "🔒 **LEY N° 29733 (PROTECCIÓN DE DATOS):** Aplica la censura (*blackout*) automatizada en nombres y documentos de identidad dentro de los visores públicos para salvaguardar la intimidad de las partes procesales.";
+      if (q.includes("resumen") || q.includes("caso")) {
+        resp = "📋 **RESUMEN DEL CASO:**<br>• **Materia:** Derechos Laborales (Invalidez de contrato CAS, Reposición bajo D. Leg. N° 728).<br>• **Partes:** H. D. A. A. vs Municipalidad Provincial de Chucuito - Juli.<br>• **Resolución:** Sentencia N° 036-2023-JLP que declara la condición de Obrero Municipal para el demandante bajo el régimen del D. Leg. 728, al realizar labores físicas y no estar sujeto obligatoriamente a conocimientos técnicos formales.<br>• **Estado Actual:** **Etapa de Juzgamiento (Sentencia emitida mediante Juzgamiento Anticipado)**.";
+      } else if (q.includes("etapa") || q.includes("estado") || q.includes("actual")) {
+        resp = "🎯 **ESTADO DEL TRÁMITE:** El Juzgado optó por el Juzgamiento Anticipado (Art. 43, Ley N° 29497). La causa concluyó con la Sentencia N° 036-2023-JLP, siendo notificada electrónicamente mediante la Cédula SINOE N° 10646 y se encuentra a la espera de eventuales medios impugnatorios para consentirse y pasar a etapa de Ejecución.";
+      } else if (q.includes("comprender") || q.includes("términos") || q.includes("palabras") || q.includes("legales")) {
+        resp = "📖 **GLOSARIO LEGAL RÁPIDO:**<br><br>• **CAS:** Contrato Administrativo de Servicios. Régimen laboral especial del Estado.<br>• **Despido Incausado:** Terminación de la relación laboral sin que exista un motivo válido justificado en la Ley.<br>• **Juzgamiento Anticipado:** Ocurre cuando el juez resuelve el caso directamente porque la controversia es únicamente de derecho, sin necesidad de actuar nuevas pruebas testimoniales o periciales.";
+      } else if (q.includes("estructura") || q.includes("expediente") || q.includes("ley")) {
+        resp = "📁 **ESTRUCTURA DEL EXPEDIENTE:** Según el **Art. 40 del D. Leg. 1412**, todo expediente electrónico debe contener de forma obligatoria:<br>a) Un código o número único de identificación.<br>b) Un Índice Digital cronológico.<br>c) Los documentos electrónicos debidamente vinculados.<br>d) La firma del índice digital mediante agente automatizado.<br>e) Los Metadatos descriptivos.<br>f) La debida categorización institucional.";
       }
 
       setTimeout(() => {
@@ -1827,7 +1871,7 @@
         if (temp) temp.remove();
 
         const bMsg = document.createElement('div');
-        bMsg.style = "background:#ffffff; padding:10px 13px; border-radius:14px; border:1px solid var(--mag-border); max-width:88%; align-self:flex-start; font-size:12px; line-height:1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.03);";
+        bMsg.style = "background:var(--surface-white); padding:10px 13px; border-radius:14px; border:1px solid var(--mag-border); max-width:88%; align-self:flex-start; font-size:12px; line-height:1.5; box-shadow: 0 2px 6px rgba(0,0,0,0.03);";
         bMsg.innerHTML = resp;
         log.appendChild(bMsg);
         log.scrollTop = log.scrollHeight;
